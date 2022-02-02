@@ -11,9 +11,10 @@ namespace API.Entities
     {
         public int Id { get; set; }
         public string? login { get; set; }
-        public string? passw { get; set; }
+        public byte[]? passwordHash { get; set; }
+        public byte[]? passwordSalt { get; set; }
         public string? email { get; set; }
-        public int tlfnr { get; set; }
+        public string? tlfnr { get; set; }
         public string? fornavn { get; set; }
         public string? efternavn { get; set; }
     }
