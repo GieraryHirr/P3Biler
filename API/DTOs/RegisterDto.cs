@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.DTOs
 {
-    public class RegisterDto
+    public class RegisterDto //We mapping data from view to DTO, and then mapping DTO with Entity object. It's much more safety.
     {
         [Required]
         public string? Login { get; set; }

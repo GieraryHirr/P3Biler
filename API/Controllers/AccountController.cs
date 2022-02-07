@@ -21,12 +21,12 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<AppUser>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<AppUser>> Register(RegisterDto registerDto) //Passing registerDTO object
         {
             if(await UserExists(registerDto.Login, registerDto.Email)) return BadRequest("Username or email is taken");
             
 
-            using var hmac = new HMACSHA512();
+            using var hmac = new HMACSHA512(); //Password encryption
 
             var user = new AppUser
             {
@@ -46,7 +46,7 @@ namespace API.Controllers
 
         private async Task<bool> UserExists(string login, string email)
         {
-            return await _context.Users.AnyAsync(x => x.login == login.ToLower() || x.email == email.ToLower());
+            return await _context.Users.AnyAsync(x => x.login == login.ToLower() || x.email == email.ToLower()); //If login or email exist in database, return true.
         }
     }
 }
