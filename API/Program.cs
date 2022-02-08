@@ -1,16 +1,20 @@
+using System.Text;
 using API.Data;
+using API.Interfaces;
+using API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// Passing database default connection string DataContext.
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+builder.Services.AddApplicationServices(builder.Configuration); //Created extensions service to keep clean program.cs
 builder.Services.AddControllers();
+builder.Services.AddCors();
+builder.Services.AddIdentityServices(builder.Configuration); //Created extensions service to keep clean program.cs
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -26,6 +30,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200")); //Allow angular to use API
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
