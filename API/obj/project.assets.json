@@ -2069,11 +2069,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Oskar\\Desktop\\P3Biler\\api\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Oskar\\Documents\\GitHub\\P3Biler\\api\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\Oskar\\Desktop\\P3Biler\\api\\API.csproj",
+      "projectPath": "C:\\Users\\Oskar\\Documents\\GitHub\\P3Biler\\api\\API.csproj",
       "packagesPath": "C:\\Users\\Oskar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Oskar\\Desktop\\P3Biler\\api\\obj\\",
+      "outputPath": "C:\\Users\\Oskar\\Documents\\GitHub\\P3Biler\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Oskar\\AppData\\Roaming\\NuGet\\NuGet.Config",
