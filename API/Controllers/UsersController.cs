@@ -26,7 +26,7 @@ namespace API.Controllers
         }
 
         //api/users/3
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
