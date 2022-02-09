@@ -14,11 +14,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  registerToggle() {
+  registerToggle() { //Display form to registry new user
     this.registerMode = !this.registerMode;
   }
 
-  cancelRegisterMode(event: boolean) {
+  cancelRegisterMode(event: boolean) { //Cancel registering and hide again registry form. Receiving boolean from child component (register.component)
     this.registerMode = event;
   }
 

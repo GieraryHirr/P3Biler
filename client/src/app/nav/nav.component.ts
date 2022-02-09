@@ -19,17 +19,17 @@ export class NavComponent implements OnInit {
 
   }
 
-  login() {
+  login() { //Get data from form and send it do login service,
     this.accountService.login(this.model).subscribe(response => {
-      this.router.navigateByUrl("/offers");
+      this.router.navigateByUrl("/offers"); //navigate to offers
     }, error => {
       console.log(error);
-      this.toastr.error(error.error);
+      this.toastr.error(error.error); //show toastr warning
     })
   }
 
-  logout() {
-    this.accountService.logout();
-    this.router.navigateByUrl("/");
+  logout() { //Get event from logout button and pass it to service
+    this.accountService.logout(); //call method in service
+    this.router.navigateByUrl("/"); //navigate to home
   }
 }

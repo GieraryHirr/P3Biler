@@ -19,18 +19,16 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() //API to get all users
         {
             return await _context.Users.ToListAsync(); //Return list of AppUser objects.
         }
 
         //api/users/3
-        [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
+        public async Task<ActionResult<AppUser>> GetUser(int id) //API to get selected user
         {
-            return await _context.Users.FindAsync(id); //Find user by Primary key in database and return as AppUser.
+            return await _context.Users.FindAsync(id); //Find() checking all primary keys in table.
         }
     }
 }

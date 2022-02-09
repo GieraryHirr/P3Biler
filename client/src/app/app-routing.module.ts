@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path:"",
     runGuardsAndResolvers:"always",
-    canActivate:[AuthGuard], //user must be logged
+    canActivate:[AuthGuard], //user must be logged to use this route
     children: [
 
       {path: "lists", component: ListsComponent},
