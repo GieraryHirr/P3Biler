@@ -1,23 +1,32 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Stjålne Biler</a>
-      <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="accountService.currentUser$ | async"> <!--Async makes that we automatically unsubscribe if our component is no longer visible-->
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">My </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()">Logout</a>
-        </li>
+    <a class="navbar-brand" routerLink="/">Stjålne Biler</a>
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ng-container>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/offers"routerLinkActive="active" >Offers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/sellers" routerLinkActive="active">Sellers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/lists" routerLinkActive="active"*ngIf="(accountService.currentUser$ | async)">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/messages" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/myoffers" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">My Offers</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/addoffer" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Add Offer</a>
+          </li>
+        </ng-container>
+
       </ul>
 
-      <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
-        <a class="dropdown-toggle text-light" dropdownToggle>Welcome</a>
+      <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <a class="dropdown-toggle text-light" dropdownToggle>{{user.login | titlecase}}</a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a class="dropdown-item">Edit Profile</a>
           <div class="dropdown-divider"></div>
@@ -25,10 +34,10 @@
         </div>
       </div>
 
-      <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+      <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off"> <!--Async makes that we automatically unsubscribe if our component is no longer visible-->
         <input name="login" [(ngModel)]="model.login" class="form-control me-2" type="text" placeholder="Login">
         <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password">
-        <button class="btn btn-outline-success" type="submit">Login</button>
+        <button class="btn btn-success" type="submit">Login</button>
       </form>
     </div>
 </nav>

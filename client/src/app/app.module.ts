@@ -1,3 +1,4 @@
+import { SharedModule } from './_modules/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
@@ -10,13 +11,32 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { SellerListComponent } from './sellers/seller-list/seller-list.component';
+import { SellerDetailComponent } from './sellers/seller-detail/seller-detail.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { OfferListComponent } from './offers/offer-list/offer-list.component';
+import { OfferDetailComponent } from './offers/offer-detail/offer-detail.component';
+import { MyOfferListComponent } from './myOffers/my-offer-list/my-offer-list.component';
+import { AddOfferComponent } from './add-offer/add-offer.component';
+import { EditOfferComponent } from './myOffers/edit-offer/edit-offer.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    SellerListComponent,
+    SellerDetailComponent,
+    ListsComponent,
+    MessagesComponent,
+    OfferListComponent,
+    OfferDetailComponent,
+    MyOfferListComponent,
+    AddOfferComponent,
+    EditOfferComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +44,7 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
