@@ -1,7 +1,8 @@
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { SharedModule } from './_modules/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,9 @@ import { MyOfferListComponent } from './myOffers/my-offer-list/my-offer-list.com
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { EditOfferComponent } from './myOffers/edit-offer/edit-offer.component';
 import { ToastrModule } from 'ngx-toastr';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { ToastrModule } from 'ngx-toastr';
     OfferDetailComponent,
     MyOfferListComponent,
     AddOfferComponent,
-    EditOfferComponent
+    EditOfferComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,9 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
