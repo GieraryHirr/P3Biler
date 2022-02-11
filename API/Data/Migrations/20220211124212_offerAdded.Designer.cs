@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220211124212_offerAdded")]
+    partial class offerAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,7 +173,7 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.HasOne("API.Entities.AppOffer", "AppOffer")
-                        .WithMany("Photo")
+                        .WithMany("MyProperty")
                         .HasForeignKey("AppOfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -181,7 +183,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppOffer", b =>
                 {
-                    b.Navigation("Photo");
+                    b.Navigation("MyProperty");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
