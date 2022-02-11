@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,23 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() //API to get all users
         {
-            return await _context.Users.ToListAsync(); //Return list of AppUser objects.
+            List<SellerDto> sellers = new List<SellerDto>();
+            var users = await _context.Users.ToListAsync();
+            foreach (var item in users)
+            {
+                var seller = new SellerDto
+                {
+                    Id = item.Id,
+                    email = item.email,
+                    tlfnr = item.tlfnr,
+                    fornavn = item.fornavn,
+                    efternavn = item.efternavn,
+                    LastActive = item.LastActive
+                };
+                sellers.Add(seller);
+            }
+
+            return Ok(sellers); //Return list of SellerDto objects.
         }
 
         //api/users/3

@@ -2064,19 +2064,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ProgrammingOS\\.nuget\\packages\\": {}
+    "C:\\Users\\Oskar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ProgrammingOS\\Documents\\GitHub\\P3Biler\\api\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Oskar\\Documents\\GitHub\\P3Biler\\api\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\ProgrammingOS\\Documents\\GitHub\\P3Biler\\api\\API.csproj",
-      "packagesPath": "C:\\Users\\ProgrammingOS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ProgrammingOS\\Documents\\GitHub\\P3Biler\\api\\obj\\",
+      "projectPath": "C:\\Users\\Oskar\\Documents\\GitHub\\P3Biler\\api\\API.csproj",
+      "packagesPath": "C:\\Users\\Oskar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Oskar\\Documents\\GitHub\\P3Biler\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ProgrammingOS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Oskar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2143,7 +2143,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
