@@ -52,13 +52,13 @@
   <div class="form-group">
     <input type="text" class="form-control" name="city" [(ngModel)]="model.City" placeholder="City">
   </div>
-  
+
   <div class="form-group">
     <input type="text" class="form-control" name="description" [(ngModel)]="model.Description" placeholder="Description">
   </div>
 
   <div class="form-group text-center">
     <button class="btn btn-success me-2" type="submit">Add</button>
-    <button class="btn btn-success me-2" type="button">Cancel</button>
+    <button class="btn btn-success me-2" type="button" routerLink="/offers"routerLinkActive="active">Cancel</button>
   </div>
 </form>

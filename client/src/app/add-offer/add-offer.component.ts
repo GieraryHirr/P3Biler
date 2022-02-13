@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OfferService } from './../_services/offer.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
@@ -10,9 +11,8 @@ import { User } from '../_models/user';
 })
 export class AddOfferComponent implements OnInit {
   model: any = {};
-  @Output() cancelAddingOffer = new EventEmitter()
 
-  constructor(private offerService: OfferService, private toastr: ToastrService) { }
+  constructor(private offerService: OfferService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,9 +20,10 @@ export class AddOfferComponent implements OnInit {
   addOffer() {
     const user: User = JSON.parse(localStorage.getItem("user"));
     this.model.AppUserId = user.id;
-    
+
     this.offerService.addOffer(this.model).subscribe(response => {
       console.log(response);
+      this.router.navigate(["/offers"]);
     }), error => {
       console.log(error);
       this.toastr.error(error.error);
