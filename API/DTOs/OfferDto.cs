@@ -21,5 +21,7 @@ namespace API.DTOs
         public string Fuel { get; set; }
         public string Gearbox { get; set; }
         public string Description { get; set; }
+        public int AppUserId { get; set; }
+        public ICollection<PhotoDto>? Photo { get; set; }
     }
 }

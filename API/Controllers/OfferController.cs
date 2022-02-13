@@ -22,24 +22,26 @@ namespace API.Controllers
         {
             var offer = new AppOffer
             {
-                Color = offerDto.Color,
-                Created = DateTime.Now,
-                Price = offerDto.Price,
                 Category = offerDto.Category,
-                Kilometers = offerDto.Kilometers,
+                Brand = offerDto.Brand,
+                Model = offerDto.Model,
                 ModelYear = offerDto.ModelYear,
+                Kilometers = offerDto.Kilometers,
                 EngineSize = offerDto.EngineSize,
                 Horsepowers = offerDto.Horsepowers,
-                Post = offerDto.Post,
-                City = offerDto.City,
-                Model = offerDto.Model,
-                Brand = offerDto.Brand,
                 Fuel = offerDto.Fuel,
                 Gearbox = offerDto.Gearbox,
+                Color = offerDto.Color,
+                Price = offerDto.Price,
+                Post = offerDto.Post,
+                City = offerDto.City,
                 Description = offerDto.Description,
-                //AppUserId = GET DATA FROM LOCALSTORAGE 
+                AppUserId = offerDto.AppUserId,
+                Created = DateTime.Now
             };
 
+            _context.Offers.Add(offer);
+            await _context.SaveChangesAsync();
             return offer;
         }
     }

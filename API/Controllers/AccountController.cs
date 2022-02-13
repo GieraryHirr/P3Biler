@@ -46,6 +46,7 @@ namespace API.Controllers
             await _context.SaveChangesAsync(); //Saving changes in database
             return new UserDto //Returning login and web token
             {
+                Id = user.Id,
                 Login = user.login,
                 Token = _tokenService.CreateToken(user) //Createing web token
             };
