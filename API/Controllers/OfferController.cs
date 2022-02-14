@@ -18,7 +18,7 @@ namespace API.Controllers
         }
 
         [HttpPost("addnewoffer")]
-        public async Task<ActionResult<AppOffer>> AddNewOffer(OfferDto offerDto)
+        public async Task<ActionResult<AppOffer>> AddNewOffer(OfferDto offerDto) //Adding new offer do database
         {
             var offer = new AppOffer
             {

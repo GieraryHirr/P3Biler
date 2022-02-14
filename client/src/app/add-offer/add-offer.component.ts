@@ -18,12 +18,12 @@ export class AddOfferComponent implements OnInit {
   }
 
   addOffer() {
-    const user: User = JSON.parse(localStorage.getItem("user"));
-    this.model.AppUserId = user.id;
+    const user: User = JSON.parse(localStorage.getItem("user")); //Get current user from local storage
+    this.model.AppUserId = user.id; //Set ID for offer.
 
     this.offerService.addOffer(this.model).subscribe(response => {
       console.log(response);
-      this.router.navigate(["/offers"]);
+      this.router.navigate(["/offers"]); //Go to all offers
     }), error => {
       console.log(error);
       this.toastr.error(error.error);
