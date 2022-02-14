@@ -17,5 +17,7 @@ namespace API.Entities
         public string? tlfnr { get; set; }
         public string? fornavn { get; set; }
         public string? efternavn { get; set; }
+        public DateTime LastActive { get; set; } = DateTime.Now;
+        public ICollection<AppOffer> Offer { get; set; }
     }
 }

@@ -16,19 +16,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register() {
+  register() { //Get data from form and pass it to service
     this.accountService.register(this.model).subscribe(response => {
       console.log(response);
       this.cancel();
     }, error => {
       console.log(error);
-      this.toastr.error(error.error);
+      this.toastr.error(error.error); //Show toastr warning
     })
 
   }
 
-  cancel() {
-    this.cancelRegister.emit(false);
+  cancel() { //Bridge between view and service
+    this.cancelRegister.emit(false); //Pass event from buton to service
   }
 
 }

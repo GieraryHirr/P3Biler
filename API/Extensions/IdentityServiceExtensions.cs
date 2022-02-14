@@ -8,9 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace API.Extensions
 {
-    public static class IdentityServiceExtensions
+    public static class IdentityServiceExtensions //Extending services to keep program.cs clean
     {
-        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config) //Needed to use web token, but don't know whats happend here
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

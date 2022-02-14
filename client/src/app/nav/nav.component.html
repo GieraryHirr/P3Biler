@@ -7,9 +7,6 @@
             <a class="nav-link" routerLink="/offers"routerLinkActive="active" >Offers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/sellers" routerLinkActive="active">Sellers</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" routerLink="/lists" routerLinkActive="active"*ngIf="(accountService.currentUser$ | async)">Lists</a>
           </li>
           <li class="nav-item">

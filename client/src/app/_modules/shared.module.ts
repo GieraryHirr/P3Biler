@@ -14,7 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: "toast-bottom-right"
     })
   ],
-  exports: [
+  exports: [ //We using this file to keep app.module.ts clean
     BsDropdownModule,
     ToastrModule
   ]
