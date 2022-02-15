@@ -1,1 +1,3 @@
-<p>offer-detail works!</p>
+<input #file type='file' multiple (change)="onSelectFile($event, file.files)">
+<button type="button" (click)="onUpload()">Upload</button>
+

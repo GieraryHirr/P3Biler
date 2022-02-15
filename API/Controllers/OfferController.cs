@@ -7,14 +7,21 @@ using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 
+using System.IO;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
 namespace API.Controllers
 {
     public class OfferController : BaseApiController
     {
         private readonly DataContext _context;
-        public OfferController(DataContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public OfferController(DataContext context, IWebHostEnvironment webHostEnvironment)
         {
             this._context = context;
+            this._webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost("addnewoffer")]
@@ -44,5 +51,38 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return offer;
         }
-    }
+
+        [HttpPost("uploadphoto")]
+        public async Task<IActionResult> UploadPhoto(IFormFile obj)
+        {
+
+            Console.WriteLine("HERE I AM");
+            if (string.IsNullOrWhiteSpace(_webHostEnvironment.WebRootPath))
+            {
+                _webHostEnvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            };
+
+            string folder = "C:/images/";
+            folder += Guid.NewGuid().ToString() + "_" + obj.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+            await obj.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return Ok();
+
+        }
+        [HttpPost("uploadphoto2")]
+        public async Task<IActionResult> UploadPhoto2([FromForm]IFormFile obj)
+        {
+            if (string.IsNullOrWhiteSpace(_webHostEnvironment.WebRootPath))
+            {
+                _webHostEnvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            };
+                        string folder = "C:/images/";
+            folder += Guid.NewGuid().ToString() + "_" + obj.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+            await obj.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return Ok();
+        }
+        
+        
+    }           
 }

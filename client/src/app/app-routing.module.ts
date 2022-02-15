@@ -27,6 +27,7 @@ const routes: Routes = [
       {path: "myoffers", component: MyOfferListComponent},
       {path: "myoffers/:id", component: EditOfferComponent},
       {path: "addoffer", component: AddOfferComponent},
+      {path: "offerdetail", component: OfferDetailComponent}
     ]
   },
   {path: "**", component: HomeComponent, pathMatch: "full"},

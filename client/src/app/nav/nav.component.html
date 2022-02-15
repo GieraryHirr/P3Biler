@@ -18,6 +18,9 @@
           <li class="nav-item" >
             <a class="nav-link" routerLink="/addoffer" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Add Offer</a>
           </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/offerdetail" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Offer Details</a>
+          </li>
         </ng-container>
 
       </ul>

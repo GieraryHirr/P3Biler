@@ -11,5 +11,6 @@ namespace API.Entities
         public bool IsMain { get; set; }
         public AppOffer AppOffer { get; set; }
         public int AppOfferId { get; set; }
+
     }
 }
