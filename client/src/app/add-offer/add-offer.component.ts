@@ -23,7 +23,7 @@ export class AddOfferComponent implements OnInit {
 
     this.offerService.addOffer(this.model).subscribe(response => {
       console.log(response);
-      this.router.navigate(["/offers"]); //Go to all offers
+      this.router.navigate(["/offer"]); //Go to all offers
     }), error => {
       console.log(error);
       this.toastr.error(error.error);

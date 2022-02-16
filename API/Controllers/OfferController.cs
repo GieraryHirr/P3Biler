@@ -11,6 +11,8 @@ using System.IO;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -23,6 +25,19 @@ namespace API.Controllers
             this._context = context;
             this._webHostEnvironment = webHostEnvironment;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<AppOffer>>> GetOffers() //Get all offers
+        {
+            return await _context.Offers.ToListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AppOffer>> GetOffer(int id)
+        {
+            return await _context.Offers.FindAsync(id); //Get offer by primary key.
+        }
+
 
         [HttpPost("addnewoffer")]
         public async Task<ActionResult<AppOffer>> AddNewOffer(OfferDto offerDto) //Adding new offer do database
@@ -53,36 +68,42 @@ namespace API.Controllers
         }
 
         [HttpPost("uploadphoto")]
-        public async Task<IActionResult> UploadPhoto(IFormFile obj)
+        public async Task<IActionResult> UploadPhoto(IFormFile file) //Add photo to offer
         {
-
-            Console.WriteLine("HERE I AM");
             if (string.IsNullOrWhiteSpace(_webHostEnvironment.WebRootPath))
             {
                 _webHostEnvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
             };
 
             string folder = "C:/images/";
-            folder += Guid.NewGuid().ToString() + "_" + obj.FileName;
-            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
-            await obj.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            folder += Guid.NewGuid().ToString() + "_" + file.FileName; //Path
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder); //Creating path
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create)); //Save file in destination
             return Ok();
-
         }
-        [HttpPost("uploadphoto2")]
-        public async Task<IActionResult> UploadPhoto2([FromForm]IFormFile obj)
+
+        /*[HttpPost("uploadphoto2")]
+        public async Task<ActionResult<Photo>> UploadPhoto2(IFormFile file, int id)
         {
             if (string.IsNullOrWhiteSpace(_webHostEnvironment.WebRootPath))
             {
                 _webHostEnvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
             };
-                        string folder = "C:/images/";
-            folder += Guid.NewGuid().ToString() + "_" + obj.FileName;
+
+            string folder = "C:/images/";
+            folder += Guid.NewGuid().ToString() + "_" + file.FileName;
             string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
-            await obj.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-            return Ok();
-        }
-        
-        
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+            Photo photo = new Photo 
+            {
+                Path = folder,
+                IsMain = false,
+                AppOfferId = id
+            };
+            _context.Photos.Add(photo);
+            await _context.SaveChangesAsync();
+            return photo;
+        }*/
     }           
 }
