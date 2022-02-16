@@ -7,9 +7,6 @@
             <a class="nav-link" routerLink="/offers"routerLinkActive="active" >Offers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/lists" routerLinkActive="active"*ngIf="(accountService.currentUser$ | async)">Lists</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" routerLink="/messages" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Messages</a>
           </li>
           <li class="nav-item">
@@ -22,7 +19,6 @@
             <a class="nav-link" routerLink="/editoffer" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Edit Offer</a>
           </li>
         </ng-container>
-
       </ul>
 
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>

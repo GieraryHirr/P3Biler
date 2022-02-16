@@ -82,6 +82,18 @@ namespace API.Controllers
             return Ok();
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
         /*[HttpPost("uploadphoto2")]
         public async Task<ActionResult<Photo>> UploadPhoto2(IFormFile file, int id)
         {
