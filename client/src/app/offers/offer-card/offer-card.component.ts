@@ -1,5 +1,5 @@
 import { Offer } from './../../_models/offer';
-import { Component, Input, OnInit, Sanitizer } from '@angular/core';
+import { Component, Input, OnInit, Sanitizer, SecurityContext } from '@angular/core';
 
 @Component({
   selector: 'app-offer-card',
@@ -9,11 +9,11 @@ import { Component, Input, OnInit, Sanitizer } from '@angular/core';
 export class OfferCardComponent implements OnInit {
   @Input() offer: Offer;
 
-  constructor(private sanitize: Sanitizer) { }
+
+  constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
-
-

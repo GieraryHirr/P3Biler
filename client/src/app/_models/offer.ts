@@ -3,7 +3,7 @@ export class Offer {
   category: string;
   brand: string;
   model: string;
-  modelyear: number;
+  modelYear: number;
   kilometers: number;
   engineSize: number;
   horsepowers: number;
@@ -14,6 +14,6 @@ export class Offer {
   post: number;
   city: string;
   description: string;
-  appuserid: number;
+  appUserId: number;
   dateTime: Date;
  }

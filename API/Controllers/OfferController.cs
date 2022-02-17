@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
-{
+{   
     public class OfferController : BaseApiController
     {
         private readonly DataContext _context;

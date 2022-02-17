@@ -3,16 +3,17 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Offer } from '../_models/offer';
 
-/*const httpOptions = { //Header to authorization API
-  headers: new HttpHeaders({
-    Authorization: 'Baerer ' + JSON.parse(localStorage.getItem('user')).token
-  })
-}*/
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfferService{
+  httpOptions = { //Header to authorization API
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
+    })
+  }
+
   baseUrl = "https://localhost:7076/api/";
   constructor(private http: HttpClient) { }
 

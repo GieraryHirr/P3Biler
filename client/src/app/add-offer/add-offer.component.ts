@@ -20,7 +20,7 @@ export class AddOfferComponent implements OnInit {
 
   addOffer() {
     const user: User = JSON.parse(localStorage.getItem("user")); //Get current user from local storage
-    this.model.appuserid = parseInt(user.id); //Set ID for offer.
+    this.model.appUserId = parseInt(user.id); //Set ID for offer.
 
     this.offerService.addOffer(this.model).subscribe(response => {
       console.log(response);
