@@ -15,5 +15,5 @@ export class Offer {
   city: string;
   description: string;
   appUserId: number;
-  dateTime: Date;
+  created: string;
  }

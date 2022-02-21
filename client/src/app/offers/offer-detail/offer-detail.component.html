@@ -1,27 +1,73 @@
 <div class="row" *ngIf="offer">
-  <div class="col4">
+  <div class="col-6">
     <div class="card">
-      <img src="https://a.cdn-hotels.com/gdcs/production144/d215/966005bf-fde9-415a-ab2b-a6a98eebcd24.jpg?impolicy=fcrop&w=800&h=533&q=medium" alt="" class="card-img-top img-thumbnail" width="100px" height="100px">
+      <img src="https://images7.alphacoders.com/288/288712.jpg" alt="" class="card-img-top img-thumbnail">
+
       <div class="card-body">
-        <strong>Location</strong>
+        <strong>Brand</strong>
+        <p>{{offer.brand}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>Model</strong>
+        <p>{{offer.model}}</p>
+      </div>
+
+
+      <div class="card-body">
+        <strong>Post</strong>
+        <p>{{offer.post}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>City</strong>
         <p>{{offer.city}}</p>
       </div>
 
       <div class="card-body">
-        <strong>Location</strong>
-        <p>{{offer.city}}</p>
+        <strong>Price</strong>
+        <p>{{offer.price}} Kr</p>
       </div>
 
-      <div class="card-body">
-        <strong>Location</strong>
-        <p>{{offer.city}}</p>
-      </div>
-
-    </div>
       <div class="card-footer"><div class="btn-group d-flex">
         <button class="btn btn-primary">Favorite</button>
         <button class="btn btn-success">Message</button>
       </div>
+
+    </div>
+
     </div>
   </div>
+
+  <div class="col-6">
+    <tabset class="offer-tabset">
+      <tab heading="Details">
+        <hr>
+        <h4>
+            <p>Category - {{offer.category}}</p>
+            <p>Model year - {{offer.modelYear}}</p>
+            <p>Kilometers - {{offer.kilometers}}</p>
+            <p>Engine Size - {{offer.engineSize}}</p>
+            <p>Horsepowers - {{offer.horsepowers}}</p>
+            <p>Fuel - {{offer.fuel}}</p>
+            <p>Gearbox - {{offer.gearbox}}</p>
+            <p>Color - {{offer.color}}</p>
+            <p>Created - {{offer.created}}</p>
+        </h4>
+      </tab>
+
+      <tab heading="Description">
+        <h4>{{offer.description}}</h4>
+      </tab>
+
+      <tab heading="Photos">
+        <h4>Here we show photos</h4>
+      </tab>
+
+      <tab heading="Messages">
+        <h4>Here we show messages</h4>
+      </tab>
+    </tabset>
+  </div>
+
 </div>

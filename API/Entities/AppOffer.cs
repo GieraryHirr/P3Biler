@@ -27,6 +27,6 @@ namespace API.Entities
         public ICollection<Photo> Photo { get; set; }
         public AppUser AppUser { get; set; }
         public int AppUserId { get; set; }
-        public DateTime Created { get; set; } = DateTime.Now;
+        public string Created { get; set; }
     }
 }

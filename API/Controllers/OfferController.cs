@@ -59,7 +59,7 @@ namespace API.Controllers
                 City = offerDto.City,
                 Description = offerDto.Description,
                 AppUserId = offerDto.AppUserId,
-                Created = DateTime.Now
+                Created = DateTime.Now.ToString("dddd, dd MMMM yyyy")
             };
 
             _context.Offers.Add(offer);
