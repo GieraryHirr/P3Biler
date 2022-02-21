@@ -29,12 +29,17 @@
         <p>{{offer.price}} Kr</p>
       </div>
 
-      <div class="card-footer"><div class="btn-group d-flex">
-        <button class="btn btn-primary">Favorite</button>
-        <button class="btn btn-success">Message</button>
-      </div>
+      <div class="card-footer">
+        <div *ngIf="user.id !== offer.appUserId" class="btn-group d-flex">
+          <button class="btn btn-primary">Favorite</button>
+          <button class="btn btn-success">Message</button>
+        </div>
 
-    </div>
+         <div *ngIf="user.id == offer.appUserId" class="btn-group d-flex">
+          <button class="btn btn-primary" routerLink="/offer/{{offer.id}}/edit">Edit</button>
+        </div>
+
+      </div>
 
     </div>
   </div>

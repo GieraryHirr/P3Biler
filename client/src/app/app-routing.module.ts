@@ -1,3 +1,4 @@
+import { OfferEditComponent } from './offers/offer-edit/offer-edit.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { EditOfferComponent } from './myOffers/edit-offer/edit-offer.component';
@@ -7,7 +8,7 @@ import { OfferDetailComponent } from './offers/offer-detail/offer-detail.compone
 import { OfferListComponent } from './offers/offer-list/offer-list.component';
 import { SellerDetailComponent } from './sellers/seller-detail/seller-detail.component';
 import { HomeComponent } from './home/home.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
       {path: "messages", component: MessagesComponent},
       {path: "myoffers", component: MyOfferListComponent},
       {path: "myoffers/:id", component: EditOfferComponent},
+      {path: "offer/:id/edit", component: OfferEditComponent},
       {path: "addoffer", component: AddOfferComponent},
       {path: "editoffer", component: EditOfferComponent},
     ]

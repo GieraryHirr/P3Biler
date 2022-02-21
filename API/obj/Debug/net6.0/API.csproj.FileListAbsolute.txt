@@ -59,3 +59,5 @@ C:\Users\Oskar\Documents\GitHub\P3Biler\api\obj\Debug\net6.0\API.dll
 C:\Users\Oskar\Documents\GitHub\P3Biler\api\obj\Debug\net6.0\ref\API.dll
 C:\Users\Oskar\Documents\GitHub\P3Biler\api\obj\Debug\net6.0\API.pdb
 C:\Users\Oskar\Documents\GitHub\P3Biler\api\obj\Debug\net6.0\API.genruntimeconfig.cache
+C:\Users\Oskar\Documents\GitHub\P3Biler\api\bin\Debug\net6.0\CloudinaryDotNet.dll
+C:\Users\Oskar\Documents\GitHub\P3Biler\api\bin\Debug\net6.0\Newtonsoft.Json.dll

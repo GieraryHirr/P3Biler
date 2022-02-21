@@ -1,0 +1,85 @@
+<div class="row" *ngIf="offer">
+  <div class="col-4">
+    <h1>Your offer</h1>
+  </div>
+  <div class="col-8">
+    <div class="alert alert-info">
+      <p><strong>Information: </strong> You have made changes. Any unsaved changes will be lost</p>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <img src="https://images7.alphacoders.com/288/288712.jpg" alt="" class="card-img-top img-thumbnail">
+
+      <div class="card-body">
+        <strong>Brand</strong>
+        <p>{{offer.brand}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>Model</strong>
+        <p>{{offer.model}}</p>
+      </div>
+
+
+      <div class="card-body">
+        <strong>Post</strong>
+        <p>{{offer.post}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>City</strong>
+        <p>{{offer.city}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>Price</strong>
+        <p>{{offer.price}} Kr</p>
+      </div>
+
+      <div class="card-footer">
+          <button class="btn btn-success btn-block">Save Changes</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-6">
+    <tabset class="offer-tabset">
+      <tab heading="Details">
+        <hr>
+        <h4>
+            <p>Category - <textarea name="category" rows="1"></textarea></p>
+            <p>Model year - <textarea name="modelYear" rows="1"></textarea></p>
+            <p>Kilometers - <textarea name="kilometers" rows="1"></textarea></p>
+            <p>Engine Size - <textarea name="engineSize" rows="1"></textarea></p>
+            <p>Horsepowers - <textarea name="horsepowers" rows="1"></textarea></p>
+            <p>Fuel - <textarea name="fuel" rows="1"></textarea></p>
+            <p>Gearbox - <textarea name="gearbox" rows="1"></textarea></p>
+            <p>Color - <textarea name="color" rows="1"></textarea></p>
+
+            <div class="form-inline">
+              <label for="post">Post: </label>
+              <input type="text" name="post" class="form-control mx-2">
+              <label for="city">City: </label>
+              <input type="text" name="city" class="form-control mx-2">
+            </div>
+        </h4>
+      </tab>
+
+      <tab heading="Description">
+        <textarea name="description" rows="20"></textarea>
+      </tab>
+
+      <tab heading="Photos">
+        <h4>Here we show photos</h4>
+      </tab>
+
+      <tab heading="Messages">
+        <h4>Here we show messages</h4>
+      </tab>
+    </tabset>
+  </div>
+
+</div>
+
