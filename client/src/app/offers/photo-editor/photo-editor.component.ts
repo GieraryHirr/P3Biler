@@ -48,15 +48,15 @@ export class PhotoEditorComponent implements OnInit {
         this.photos.push[photo];
       }
     }
+  }
 
-    setMainPhoto(photo: Photo) {
-      this.offerService.setMainPhoto(photo.id).subscribe(() => {
-        this.photos.forEach(p=> {
-          if (p.IsMain) p.IsMain = false;
-          if (p.Id === photo.id) p.IsMain = true;
-        })
+  setMainPhoto(photo: Photo) {
+    this.offerService.setMainPhoto(photo.Id).subscribe(() => {
+      this.photos.forEach(p=> {
+        if (p.IsMain) p.IsMain = false;
+        if (p.Id === photo.Id) p.IsMain = true;
       })
-    }
+    })
   }
 
   loadPhotos() {
