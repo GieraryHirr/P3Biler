@@ -1,3 +1,4 @@
+import { FileUploadModule } from 'ng2-file-upload';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -16,13 +17,15 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
       positionClass: "toast-bottom-right"
     }),
     TabsModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    FileUploadModule,
   ],
   exports: [ //We using this file to keep app.module.ts clean
     BsDropdownModule,
     ToastrModule,
     TabsModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    FileUploadModule,
   ]
 })
 export class SharedModule { }

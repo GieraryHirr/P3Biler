@@ -2,7 +2,6 @@ import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 import { OfferEditComponent } from './offers/offer-edit/offer-edit.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AddOfferComponent } from './add-offer/add-offer.component';
-import { EditOfferComponent } from './myOffers/edit-offer/edit-offer.component';
 import { MyOfferListComponent } from './myOffers/my-offer-list/my-offer-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { OfferDetailComponent } from './offers/offer-detail/offer-detail.component';
@@ -25,10 +24,8 @@ const routes: Routes = [
     children: [
       {path: "messages", component: MessagesComponent},
       {path: "myoffers", component: MyOfferListComponent},
-      {path: "myoffers/:id", component: EditOfferComponent},
       {path: "offer/:id/edit", component: OfferEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: "addoffer", component: AddOfferComponent},
-      {path: "editoffer", component: EditOfferComponent},
     ]
   },
   {path: "**", component: HomeComponent, pathMatch: "full"},

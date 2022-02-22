@@ -15,6 +15,7 @@ namespace API.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+            services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<ITokenService, TokenService>(); //When request comes in and we have service inject in controller, then new instance of service is created. When request is finished, service is dispose.
 
         //Passing database default connection string DataContext.

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Offer } from '../_models/offer';
+import { Photo } from '../_models/Photo';
 
 
 @Injectable({
@@ -18,14 +19,7 @@ export class OfferService{
   constructor(private http: HttpClient) { }
 
   addOffer(model: Offer) { //Adding Offer
-    return this.http.post(this.baseUrl + "offer/addnewoffer", model);
-  }
-
-  uploadPhoto(file: File) { //Uploading photo
-    console.log(file);
-    const formData = new FormData();
-    formData.append("file", file, file.name); //Add file as FormData
-    return this.http.post(this.baseUrl + "offer/uploadphoto", formData);
+    return this.http.post(this.baseUrl + "offer/add-new-offer", model);
   }
 
   getOffers() {
@@ -37,6 +31,14 @@ export class OfferService{
   }
 
   updateOffer(offer: Offer) {
-    return this.http.put(this.baseUrl + "offer/updateoffer", offer);
+    return this.http.put(this.baseUrl + "offer/update-offer", offer);
+  }
+
+  getPhotos() {
+    return this.http.get<Photo[]>(this.baseUrl + "offer/get-photos");
+  }
+
+  setMainPhoto(id: number) {
+    return this.http.put(this.baseUrl + "offer/set-main-photo/" + id, {});
   }
 }

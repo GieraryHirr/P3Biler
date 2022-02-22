@@ -21,6 +21,7 @@ export class OfferEditComponent implements OnInit {
     }
   }
 
+
   constructor(private offerService: OfferService, private route: ActivatedRoute, private toastr: ToastrService) {}
 
   ngOnInit(): void {

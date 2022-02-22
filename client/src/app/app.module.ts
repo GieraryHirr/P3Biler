@@ -18,9 +18,9 @@ import { OfferListComponent } from './offers/offer-list/offer-list.component';
 import { OfferDetailComponent } from './offers/offer-detail/offer-detail.component';
 import { MyOfferListComponent } from './myOffers/my-offer-list/my-offer-list.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
-import { EditOfferComponent } from './myOffers/edit-offer/edit-offer.component';
 import { OfferCardComponent } from './offers/offer-card/offer-card.component';
 import { OfferEditComponent } from './offers/offer-edit/offer-edit.component';
+import { PhotoEditorComponent } from './offers/photo-editor/photo-editor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +34,9 @@ import { OfferEditComponent } from './offers/offer-edit/offer-edit.component';
     OfferDetailComponent,
     MyOfferListComponent,
     AddOfferComponent,
-    EditOfferComponent,
     OfferCardComponent,
-    OfferEditComponent
+    OfferEditComponent,
+    PhotoEditorComponent
   ],
   imports: [
     BrowserModule,

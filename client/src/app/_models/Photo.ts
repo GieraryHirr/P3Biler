@@ -1,3 +1,7 @@
 export class Photo {
-  imgPath: any
+  Id: number
+  path: string
+  IsMain: boolean
+  PublicId: string
+  AppOfferId: number
 }
