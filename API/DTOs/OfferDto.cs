@@ -7,6 +7,7 @@ namespace API.DTOs
 {
     public class OfferDto
     {
+        public int Id { get; set; }
         public string Color { get; set; }
         public int Price { get; set; }
         public string Category { get; set; }

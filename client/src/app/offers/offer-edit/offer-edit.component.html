@@ -1,84 +1,79 @@
 <div class="row" *ngIf="offer">
-  <div class="col-4">
-    <h1>Your offer</h1>
+  <div class="col-6">
+    <h1>{{offer.brand}} {{offer.model}}</h1>
   </div>
-  <div class="col-8">
-    <div class="alert alert-info">
-      <p><strong>Information: </strong> You have made changes. Any unsaved changes will be lost</p>
+  <div class="col-6">
+    <div class="alert alert-info" *ngIf="editForm.dirty || editForm2.dirty">
+      <strong>Information: </strong> You have made changes. Any unsaved changes will be lost
     </div>
   </div>
   <div class="col-6">
     <div class="card">
       <img src="https://images7.alphacoders.com/288/288712.jpg" alt="" class="card-img-top img-thumbnail">
 
-      <div class="card-body">
-        <strong>Brand</strong>
-        <p>{{offer.brand}}</p>
-      </div>
-
-      <div class="card-body">
-        <strong>Model</strong>
-        <p>{{offer.model}}</p>
-      </div>
-
-
-      <div class="card-body">
-        <strong>Post</strong>
-        <p>{{offer.post}}</p>
-      </div>
-
-      <div class="card-body">
-        <strong>City</strong>
-        <p>{{offer.city}}</p>
-      </div>
-
-      <div class="card-body">
-        <strong>Price</strong>
-        <p>{{offer.price}} Kr</p>
-      </div>
+      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateOffer()">
+        <div class="form-inline">
+          <label for="brand">Brand: </label>
+          <input [(ngModel)]="offer.brand" type="text" name="brand" class="form-control">
+          <label for="model">Model: </label>
+          <input [(ngModel)]="offer.model" type="text" name="model" class="form-control">
+        </div>
+        <div class="form-inline">
+          <label for="post">Post: </label>
+          <input [(ngModel)]="offer.post" type="text" name="post" class="form-control">
+          <label for="city">City: </label>
+          <input [(ngModel)]="offer.city" type="text" name="city" class="form-control">
+        </div>
+        <div class="form-inline">
+          <label for="price">Price: </label>
+          <input [(ngModel)]="offer.price" type="text" name="price" class="form-control">
+        </div>
+      </form>
 
       <div class="card-footer">
-          <button class="btn btn-success btn-block">Save Changes</button>
+        <div class="btn-group d-flex">
+          <button [disabled]="!editForm.dirty && !editForm2.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
+        </div>
       </div>
 
     </div>
   </div>
 
   <div class="col-6">
+    <form #editForm2="ngForm" id="editForm" (ngSubmit)="updateOffer()">
     <tabset class="offer-tabset">
       <tab heading="Details">
-        <hr>
-        <h4>
-            <p>Category - <textarea name="category" rows="1"></textarea></p>
-            <p>Model year - <textarea name="modelYear" rows="1"></textarea></p>
-            <p>Kilometers - <textarea name="kilometers" rows="1"></textarea></p>
-            <p>Engine Size - <textarea name="engineSize" rows="1"></textarea></p>
-            <p>Horsepowers - <textarea name="horsepowers" rows="1"></textarea></p>
-            <p>Fuel - <textarea name="fuel" rows="1"></textarea></p>
-            <p>Gearbox - <textarea name="gearbox" rows="1"></textarea></p>
-            <p>Color - <textarea name="color" rows="1"></textarea></p>
 
-            <div class="form-inline">
-              <label for="post">Post: </label>
-              <input type="text" name="post" class="form-control mx-2">
-              <label for="city">City: </label>
-              <input type="text" name="city" class="form-control mx-2">
-            </div>
-        </h4>
+          <h4>Category: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.category" name="category" rows="1"></textarea>
+          <h4>Model year: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.modelYear" name="modelYear" rows="1"></textarea>
+          <h4>Kilometers: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.kilometers" name="kilometers" rows="1"></textarea>
+          <h4>Engine Size: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.engineSize" name="engineSize" rows="1"></textarea>
+          <h4>Horsepowers: </h4>
+           <textarea class="form-control" [(ngModel)]="offer.horsepowers" name="horsepowers" rows="1"></textarea>
+          <h4>Fuel: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.fuel" name="fuel" rows="1"></textarea>
+          <h4>Gearbox: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.gearbox" name="gearbox" rows="1"></textarea>
+          <h4>Color: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.color" name="color" rows="1"></textarea>
+
       </tab>
+
 
       <tab heading="Description">
-        <textarea name="description" rows="20"></textarea>
+        <h4>Description: </h4>
+        <textarea class="form-control" [(ngModel)]="offer.description" name="description" rows="25"></textarea>
       </tab>
 
-      <tab heading="Photos">
-        <h4>Here we show photos</h4>
-      </tab>
-
-      <tab heading="Messages">
-        <h4>Here we show messages</h4>
+      <tab heading="Edit Photos">
+        <h4>Here will be photo edit</h4>
       </tab>
     </tabset>
+  </form>
   </div>
 
 </div>

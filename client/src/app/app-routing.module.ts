@@ -1,3 +1,4 @@
+import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { OfferEditComponent } from './offers/offer-edit/offer-edit.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AddOfferComponent } from './add-offer/add-offer.component';
@@ -25,7 +26,7 @@ const routes: Routes = [
       {path: "messages", component: MessagesComponent},
       {path: "myoffers", component: MyOfferListComponent},
       {path: "myoffers/:id", component: EditOfferComponent},
-      {path: "offer/:id/edit", component: OfferEditComponent},
+      {path: "offer/:id/edit", component: OfferEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: "addoffer", component: AddOfferComponent},
       {path: "editoffer", component: EditOfferComponent},
     ]

@@ -82,17 +82,31 @@ namespace API.Controllers
             return Ok();
         }
 
+        [HttpPut("updateoffer")]
+        public async Task<ActionResult> UpdateOffer(OfferDto offerdto) {
+            Console.WriteLine("******************************************************************************************************************************************");
+            var offer = await _context.Offers.FindAsync(offerdto.Id);
 
+                offer.Category = offerdto.Category;
+                offer.Brand = offerdto.Brand;
+                offer.Model = offerdto.Model;
+                offer.ModelYear = offerdto.ModelYear;
+                offer.Kilometers = offerdto.Kilometers;
+                offer.EngineSize = offerdto.EngineSize;
+                offer.Horsepowers = offerdto.Horsepowers;
+                offer.Fuel = offerdto.Fuel;
+                offer.Gearbox = offerdto.Gearbox;
+                offer.Color = offerdto.Color;
+                offer.Price = offerdto.Price;
+                offer.Post = offerdto.Post;
+                offer.City = offerdto.City;
+                offer.Description = offerdto.Description;
 
+                _context.Offers.Update(offer);
 
-
-
-
-
-
-
-
-
+                await _context.SaveChangesAsync();
+                return NoContent();
+        }
 
         /*[HttpPost("uploadphoto2")]
         public async Task<ActionResult<Photo>> UploadPhoto2(IFormFile file, int id)

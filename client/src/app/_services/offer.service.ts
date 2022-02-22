@@ -35,4 +35,8 @@ export class OfferService{
   getOffer(id: number) {
     return this.http.get<Offer>(this.baseUrl + "offer/" + id);
   }
+
+  updateOffer(offer: Offer) {
+    return this.http.put(this.baseUrl + "offer/updateoffer", offer);
+  }
 }
