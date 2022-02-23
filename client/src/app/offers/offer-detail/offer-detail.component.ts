@@ -1,3 +1,4 @@
+import { Photo } from './../../_models/Photo';
 import { ActivatedRoute } from '@angular/router';
 import { OfferService } from 'src/app/_services/offer.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,7 @@ import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov
 export class OfferDetailComponent implements OnInit {
   offer: Offer;
   user: User;
+
 
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -36,26 +38,32 @@ export class OfferDetailComponent implements OnInit {
         preview: false
       }
     ]
-
-
   }
 
-  getImages(): NgxGalleryImage[] {
-    const imageUrls = [];
-    var url = "https://images7.alphacoders.com/288/288712.jpg";
-    var url2 = "https://images8.alphacoders.com/437/thumb-1920-437653.jpg";
-    imageUrls.push({
-      small: url,
-      medium: url,
-      big: url
-    });
-    imageUrls.push({
-      small: url2,
-      medium: url2,
-      big: url2
-    });
-    return imageUrls;
+  getImages(): NgxGalleryImage[]
+  {
+    const imageUrls: NgxGalleryImage[] = [];
 
+    this.offerService.getOffer(+this.route.snapshot.paramMap.get('id')).subscribe(offer =>
+      {
+        this.offerService.getPhotosByAppOfferId(offer.id).subscribe(photos =>
+          {
+            for (let photo of photos)
+            {
+              if (photo.isMain)
+              {
+                this.offer.mainPhotoPath = photo.path;
+              }
+
+              imageUrls.push({
+                small: photo?.path,
+                medium: photo?.path,
+                big: photo?.path
+              })
+            }
+          })
+      })
+       return imageUrls;
   }
 
   loadOffer() {
@@ -65,4 +73,39 @@ export class OfferDetailComponent implements OnInit {
     })
   }
 
+
+
+
+
+
+
+  /*loadOffer2() {
+    this.offerService.getOffer(+this.route.snapshot.paramMap.get('id')).subscribe(offer => {
+      this.offer = offer;
+      this.loadPhotos(offer.id);
+      console.warn(this.offer.photos)
+      this.galleryImages = this.getImages2();
+    })
+  }
+
+  loadPhotos(appOfferId: number)
+  {
+    this.offerService.getPhotosByAppOfferId(appOfferId).subscribe( photos => {
+      this.offer.photos = photos;
+      console.warn(this.offer.photos)
+    })
+  }
+
+  getImages2(): NgxGalleryImage[] {
+    const imageUrls = [];
+    console.warn(this.offer.photos)
+    for (const photo of this.offer.photos) {
+      imageUrls.push({
+        small: photo?.path,
+        medium: photo?.path,
+        big: photo?.path
+      })
+    }
+    return imageUrls;
+  }*/
 }

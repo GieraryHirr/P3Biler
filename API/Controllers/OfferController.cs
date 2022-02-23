@@ -76,6 +76,22 @@ namespace API.Controllers
             return await _context.Photos.ToListAsync();
         }
 
+        [HttpGet("get-photos/{id}")]
+        public async Task<ActionResult<IEnumerable<Photo>>> GetPhotosByAppOfferId(int id) //Get all offers
+        {
+            var photos = await _context.Photos.ToListAsync();
+            List<Photo> foundedPhotos = new List<Photo>();
+            foreach (Photo photo in photos)
+            {
+                if (photo.AppOfferId == id)
+                {
+                    foundedPhotos.Add(photo);
+                }
+                
+            }
+            return foundedPhotos;
+        }
+
         [HttpPost("upload-photo")]
         public async Task<ActionResult<Photo>> AddPhoto(IFormFile file)
         {

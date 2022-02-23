@@ -1,3 +1,5 @@
+import { Photo } from "./Photo";
+
 export class Offer {
   id: number;
   category: string;
@@ -16,4 +18,5 @@ export class Offer {
   description: string;
   appUserId: number;
   created: string;
+  mainPhotoPath: string;
  }
