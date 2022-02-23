@@ -1,3 +1,4 @@
+import { OfferService } from 'src/app/_services/offer.service';
 import { Offer } from './../../_models/offer';
 import { Component, Input, OnInit, Sanitizer, SecurityContext } from '@angular/core';
 
@@ -10,10 +11,23 @@ export class OfferCardComponent implements OnInit {
   @Input() offer: Offer;
 
 
-  constructor() { }
+  constructor(private offerService: OfferService) { }
 
   ngOnInit(): void {
 
+  }
+
+  loadPhotos(appOfferId: number)
+  {
+    this.offerService.getPhotosByAppOfferId(appOfferId).subscribe( photos => {
+      for (let photo of photos)
+      {
+        if (photo.isMain)
+        {
+          this.offer.mainPhotoPath = photo.path;
+        }
+      }
+    })
   }
 
 }

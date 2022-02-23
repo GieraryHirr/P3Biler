@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Helpers
 {
-    public class CloudinarySettings
+    public class CloudinarySettings //Account settings
     {
         public string CloudName { get; set; }
         public string ApiKey { get; set; }
