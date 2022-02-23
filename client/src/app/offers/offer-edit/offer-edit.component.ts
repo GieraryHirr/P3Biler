@@ -31,6 +31,7 @@ export class OfferEditComponent implements OnInit {
   loadOffer() {
     this.offerService.getOffer(+this.route.snapshot.paramMap.get('id')).subscribe(offer => {
       this.offer = offer;
+      this.loadPhotos(offer.appUserId);
     })
   }
 
@@ -43,4 +44,16 @@ export class OfferEditComponent implements OnInit {
     })
   }
 
+  loadPhotos(appOfferId: number)
+  {
+    this.offerService.getPhotosByAppOfferId(appOfferId).subscribe( photos => {
+      for (let photo of photos)
+      {
+        if (photo.isMain)
+        {
+          this.offer.mainPhotoPath = photo.path;
+        }
+      }
+    })
+  }
 }
