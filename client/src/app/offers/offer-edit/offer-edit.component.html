@@ -1,0 +1,79 @@
+<div class="row" *ngIf="offer">
+  <div class="col-6">
+    <h1>{{offer.brand}} {{offer.model}}</h1>
+  </div>
+  <div class="col-6">
+    <div class="alert alert-info" *ngIf="editForm.dirty || editForm2.dirty">
+      <strong>Information: </strong> You have made changes. Any unsaved changes will be lost
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <img src="{{offer.mainPhotoPath}}" alt="" class="card-img-top img-thumbnail">
+
+      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateOffer()">
+        <div class="form-inline">
+          <label for="brand">Brand: </label>
+          <input [(ngModel)]="offer.brand" type="text" name="brand" class="form-control">
+          <label for="model">Model: </label>
+          <input [(ngModel)]="offer.model" type="text" name="model" class="form-control">
+        </div>
+        <div class="form-inline">
+          <label for="post">Post: </label>
+          <input [(ngModel)]="offer.post" type="text" name="post" class="form-control">
+          <label for="city">City: </label>
+          <input [(ngModel)]="offer.city" type="text" name="city" class="form-control">
+        </div>
+        <div class="form-inline">
+          <label for="price">Price: </label>
+          <input [(ngModel)]="offer.price" type="text" name="price" class="form-control">
+        </div>
+      </form>
+
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button [disabled]="!editForm.dirty && !editForm2.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-6">
+    <form #editForm2="ngForm" id="editForm" (ngSubmit)="updateOffer()">
+    <tabset class="offer-tabset">
+      <tab heading="Details">
+
+          <h4>Category: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.category" name="category" rows="1"></textarea>
+          <h4>Model year: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.modelYear" name="modelYear" rows="1"></textarea>
+          <h4>Kilometers: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.kilometers" name="kilometers" rows="1"></textarea>
+          <h4>Engine Size: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.engineSize" name="engineSize" rows="1"></textarea>
+          <h4>Horsepowers: </h4>
+           <textarea class="form-control" [(ngModel)]="offer.horsepowers" name="horsepowers" rows="1"></textarea>
+          <h4>Fuel: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.fuel" name="fuel" rows="1"></textarea>
+          <h4>Gearbox: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.gearbox" name="gearbox" rows="1"></textarea>
+          <h4>Color: </h4>
+          <textarea class="form-control" [(ngModel)]="offer.color" name="color" rows="1"></textarea>
+
+      </tab>
+
+
+      <tab heading="Description">
+        <h4>Description: </h4>
+        <textarea class="form-control" [(ngModel)]="offer.description" name="description" rows="25"></textarea>
+      </tab>
+
+      <tab heading="Edit Photos">
+        <app-photo-editor [offer]="offer"></app-photo-editor>
+      </tab>
+    </tabset>
+  </form>
+  </div>
+</div>
+

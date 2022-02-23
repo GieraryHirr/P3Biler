@@ -1,1 +1,80 @@
-<p>offer-detail works!</p>
+<div class="row" *ngIf="offer">
+
+
+
+  <div class="col-6">
+    <div class="card">
+      <img src="{{offer.mainPhotoPath}}" alt="" class="card-img-top img-thumbnail">
+
+      <div class="card-body">
+        <strong>Brand</strong>
+        <p>{{offer.brand}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>Model</strong>
+        <p>{{offer.model}}</p>
+      </div>
+
+
+      <div class="card-body">
+        <strong>Post</strong>
+        <p>{{offer.post}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>City</strong>
+        <p>{{offer.city}}</p>
+      </div>
+
+      <div class="card-body">
+        <strong>Price</strong>
+        <p>{{offer.price}} Kr</p>
+      </div>
+
+      <div class="card-footer">
+        <div *ngIf="user.id !== offer.appUserId" class="btn-group d-flex">
+          <button class="btn btn-primary">Favorite</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+
+         <div *ngIf="user.id == offer.appUserId" class="btn-group d-flex">
+          <button class="btn btn-primary" routerLink="/offer/{{offer.id}}/edit">Edit</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-6">
+    <tabset class="offer-tabset">
+      <tab heading="Details">
+        <hr>
+        <h4>
+            <p>Category - {{offer.category}}</p>
+            <p>Model year - {{offer.modelYear}}</p>
+            <p>Kilometers - {{offer.kilometers}}</p>
+            <p>Engine Size - {{offer.engineSize}}</p>
+            <p>Horsepowers - {{offer.horsepowers}}</p>
+            <p>Fuel - {{offer.fuel}}</p>
+            <p>Gearbox - {{offer.gearbox}}</p>
+            <p>Color - {{offer.color}}</p>
+            <p>Created - {{offer.created}}</p>
+        </h4>
+      </tab>
+
+      <tab heading="Description">
+        <h4>{{offer.description}}</h4>
+      </tab>
+
+      <tab heading="Photos">
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages" style="display: inline-block; margin-bottom: 20px"></ngx-gallery>
+      </tab>
+
+      <tab heading="Messages">
+        <h4>Here we show messages</h4>
+      </tab>
+    </tabset>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { Offer } from './../_models/offer';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OfferService } from './../_services/offer.service';
@@ -10,7 +11,7 @@ import { User } from '../_models/user';
   styleUrls: ['./add-offer.component.css']
 })
 export class AddOfferComponent implements OnInit {
-  model: any = {};
+  model = new Offer(); //Must be initialize to map from html
 
   constructor(private offerService: OfferService, private toastr: ToastrService, private router: Router) { }
 
@@ -19,11 +20,11 @@ export class AddOfferComponent implements OnInit {
 
   addOffer() {
     const user: User = JSON.parse(localStorage.getItem("user")); //Get current user from local storage
-    this.model.AppUserId = user.id; //Set ID for offer.
+    this.model.appUserId = parseInt(user.id); //Set ID for offer.
 
     this.offerService.addOffer(this.model).subscribe(response => {
       console.log(response);
-      this.router.navigate(["/offers"]); //Go to all offers
+      this.router.navigate(["/offer"]); //Go to all offers
     }), error => {
       console.log(error);
       this.toastr.error(error.error);

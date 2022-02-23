@@ -7,6 +7,7 @@ namespace API.DTOs
 {
     public class OfferDto
     {
+        public int Id { get; set; }
         public string Color { get; set; }
         public int Price { get; set; }
         public string Category { get; set; }
@@ -22,6 +23,5 @@ namespace API.DTOs
         public string Gearbox { get; set; }
         public string Description { get; set; }
         public int AppUserId { get; set; }
-        public ICollection<PhotoDto>? Photo { get; set; }
     }
 }

@@ -4,22 +4,21 @@
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <ng-container>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/offers"routerLinkActive="active" >Offers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/lists" routerLinkActive="active"*ngIf="(accountService.currentUser$ | async)">Lists</a>
+            <a class="nav-link" routerLink="/offer"routerLinkActive="active" >Offers</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/messages" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Messages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/myoffers" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">My Offers</a>
+            <a class="nav-link" routerLink="/myoffer" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">My Offers</a>
           </li>
           <li class="nav-item" >
             <a class="nav-link" routerLink="/addoffer" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Add Offer</a>
           </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/editoffer" routerLinkActive="active" *ngIf="(accountService.currentUser$ | async)">Edit Offer</a>
+          </li>
         </ng-container>
-
       </ul>
 
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>

@@ -1,1 +1,5 @@
-<p>offer-list works!</p>
+<div class="row">
+  <div *ngFor="let offer of offers" class="col-3">
+    <app-offer-card [offer]="offer"></app-offer-card>
+  </div>
+</div>
