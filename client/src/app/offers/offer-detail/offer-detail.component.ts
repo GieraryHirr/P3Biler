@@ -75,6 +75,10 @@ export class OfferDetailComponent implements OnInit, Window {
     // Loop through each photo in the local_photos parameter.
     local_photos.forEach(photo =>
       {
+        if (photo.isMain) {
+          this.offer.mainPhotoPath = photo.path;
+        }
+
         imageURLS.push(
           {
             small: photo.path,
