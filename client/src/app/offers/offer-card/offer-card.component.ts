@@ -14,6 +14,7 @@ export class OfferCardComponent implements OnInit {
   constructor(private offerService: OfferService) { }
 
   ngOnInit(): void {
+    this.loadPhotos(this.offer.id);
 
   }
 
