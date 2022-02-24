@@ -13,7 +13,7 @@ namespace API.Services
     public class PhotoService : IPhotoService
     {
         private readonly Cloudinary _cloudinary;
-        public PhotoService(IOptions<CloudinarySettings> config)
+        public PhotoService(IOptions<CloudinarySettings> config) //Get account settings
         {
             var acc = new Account
             (
@@ -25,7 +25,7 @@ namespace API.Services
             _cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
+        public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file) //Upload photo to cloudinary
         {
             var uploadResult = new ImageUploadResult();
 
@@ -35,9 +35,9 @@ namespace API.Services
                 var uploadParams = new ImageUploadParams()
                 {
                     File = new FileDescription(file.FileName, stream),
-                    Transformation = new Transformation().Height(500).Width(500).Crop("fill")
+                    Transformation = new Transformation().Height(480).Width(854).Crop("fill")
                 };
-                uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                uploadResult = await _cloudinary.UploadAsync(uploadParams); //Send image to cloudinary
             }
 
             return uploadResult;

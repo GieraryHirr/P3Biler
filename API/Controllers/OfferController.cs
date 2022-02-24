@@ -71,19 +71,19 @@ namespace API.Controllers
         }
 
         [HttpGet("get-photos")]
-        public async Task<ActionResult<IEnumerable<Photo>>> GetPhotos() //Get all offers
+        public async Task<ActionResult<IEnumerable<Photo>>> GetPhotos() //Get all photos
         {
             return await _context.Photos.ToListAsync();
         }
 
         [HttpGet("get-photos/{id}")]
-        public async Task<ActionResult<IEnumerable<Photo>>> GetPhotosByAppOfferId(int id) //Get all offers
+        public async Task<ActionResult<IEnumerable<Photo>>> GetPhotosByAppOfferId(int id) //Get all photos for offer
         {
-            var photos = await _context.Photos.ToListAsync();
+            var photos = await _context.Photos.ToListAsync(); //Get all photos
             List<Photo> foundedPhotos = new List<Photo>();
             foreach (Photo photo in photos)
             {
-                if (photo.AppOfferId == id)
+                if (photo.AppOfferId == id) //Find photos with specified offer id
                 {
                     foundedPhotos.Add(photo);
                 }
@@ -93,9 +93,9 @@ namespace API.Controllers
         }
 
         [HttpPost("upload-photo")]
-        public async Task<ActionResult<Photo>> AddPhoto(IFormFile file)
+        public async Task<ActionResult<Photo>> AddPhoto(IFormFile file) //Upload photo
         {
-            var result = await _photoService.AddPhotoAsync(file);
+            var result = await _photoService.AddPhotoAsync(file); //Upload photo to cloudinary
 
             if (result.Error != null) return BadRequest(result.Error.Message);
             
@@ -107,27 +107,27 @@ namespace API.Controllers
                 IsMain = false
             };
 
-            _context.Photos.Add(photo);
+            _context.Photos.Add(photo); //Add photo properties to database
             await _context.SaveChangesAsync();
             return photo;
         }
 
         [HttpPut("set-main-photo/{id}")]
-        public async Task<ActionResult> SetMainPhoto(int id)
+        public async Task<ActionResult> SetMainPhoto(int id) //Set main photo for offer
         {
-            var photo = _context.Photos.FirstOrDefault(x => x.Id == id);
+            var photo = _context.Photos.FirstOrDefault(x => x.Id == id); //Get photo which will be new main photo
             if (photo.IsMain) return BadRequest("This is already your main photo");
 
-            var currentMain = _context.Photos.FirstOrDefault(x => x.IsMain);
-            if (currentMain != null) currentMain.IsMain = false;
-            photo.IsMain = true;
+            var currentMain = _context.Photos.FirstOrDefault(x => x.IsMain); //Get current main photo
+            if (currentMain != null) currentMain.IsMain = false; //make current main photo a not main photo
+            photo.IsMain = true; //make choosen photo a main photo
 
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpPut("update-offer")]
-        public async Task<ActionResult> UpdateOffer(OfferDto offerdto) {
+        public async Task<ActionResult> UpdateOffer(OfferDto offerdto) { //Update offer
             var offer = await _context.Offers.FindAsync(offerdto.Id);
 
                 offer.Category = offerdto.Category;

@@ -43,6 +43,6 @@ export class OfferService{
   }
 
   setMainPhoto(id: number) {
-    return this.http.put(this.baseUrl + "offer/set-main-photo/" + id, {});
+    return this.http.put(this.baseUrl + "offer/set-main-photo/" + id, {}); //put request need some object at the end
   }
 }
