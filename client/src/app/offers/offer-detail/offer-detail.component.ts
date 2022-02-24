@@ -8,15 +8,20 @@ import { User } from 'src/app/_models/user';
 import { take } from 'rxjs';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 
+const photoPromise = new Promise<Photo[]>((resolve, reject) => {});
+
+
+
+export interface Window {  }
+
 @Component({
   selector: 'app-offer-detail',
   templateUrl: './offer-detail.component.html',
   styleUrls: ['./offer-detail.component.css']
 })
-export class OfferDetailComponent implements OnInit {
+export class OfferDetailComponent implements OnInit, Window {
   offer: Offer;
   user: User;
-
 
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -27,7 +32,7 @@ export class OfferDetailComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.loadOffer();
+    this.startLoad();
     this.galleryOptions = [
       {
         width: "854px",
@@ -40,72 +45,47 @@ export class OfferDetailComponent implements OnInit {
     ]
   }
 
-  getImages(): NgxGalleryImage[]
+  // Returns a new promise with the photos if the photos was loaded.
+  loadPhotos(appOfferId: number): Promise<Photo[]>
   {
-    const imageUrls: NgxGalleryImage[] = [];
+    // A promise has two outcomes, a "Resolve" and a "Reject".
+    // If the resolve value has been set the promise is a success. "Set resolve value: 'resolve(photos)'"
+    // If the reject value has been set the promise was a failure.  "Set reject value: 'reject(photos)'"
+    return new Promise((resolve) => { this.offerService.getPhotosByAppOfferId(appOfferId).subscribe( photos => { return resolve(photos); } )});
+  }
 
+  // Start the load by getting an offer, then load the photos, when the photos are loaded call loadImages
+  startLoad(): void
+  {
     this.offerService.getOffer(+this.route.snapshot.paramMap.get('id')).subscribe(offer =>
       {
-        this.offerService.getPhotosByAppOfferId(offer.id).subscribe(photos =>
-          {
-            for (let photo of photos)
-            {
-              if (photo.isMain)
-              {
-                this.offer.mainPhotoPath = photo.path;
-              }
+        this.offer = offer;
 
-              imageUrls.push({
-                small: photo?.path,
-                medium: photo?.path,
-                big: photo?.path
-              })
-            }
-          })
-      })
-       return imageUrls;
+        // This makes sure that loadImages does not get called before the photos has been retrieved.
+        // If the loadPhotos promise was rejected the images will not load.
+        this.loadPhotos(offer.id).then(resolveValue => this.loadImages(resolveValue));
+      });
   }
 
-  loadOffer() {
-    this.offerService.getOffer(+this.route.snapshot.paramMap.get('id')).subscribe(offer => {
-      this.offer = offer;
-      this.galleryImages = this.getImages();
-    })
-  }
-
-
-
-
-
-
-
-  /*loadOffer2() {
-    this.offerService.getOffer(+this.route.snapshot.paramMap.get('id')).subscribe(offer => {
-      this.offer = offer;
-      this.loadPhotos(offer.id);
-      console.warn(this.offer.photos)
-      this.galleryImages = this.getImages2();
-    })
-  }
-
-  loadPhotos(appOfferId: number)
+  // Load the images and point the galleryImages property to them
+  loadImages(local_photos: Photo[]): void
   {
-    this.offerService.getPhotosByAppOfferId(appOfferId).subscribe( photos => {
-      this.offer.photos = photos;
-      console.warn(this.offer.photos)
-    })
-  }
+    const imageURLS: NgxGalleryImage[] = [];
 
-  getImages2(): NgxGalleryImage[] {
-    const imageUrls = [];
-    console.warn(this.offer.photos)
-    for (const photo of this.offer.photos) {
-      imageUrls.push({
-        small: photo?.path,
-        medium: photo?.path,
-        big: photo?.path
-      })
-    }
-    return imageUrls;
-  }*/
+    // Loop through each photo in the local_photos parameter.
+    local_photos.forEach(photo =>
+      {
+        imageURLS.push(
+          {
+            small: photo.path,
+            medium: photo.path,
+            big: photo.path
+          }
+        )
+      }
+    );
+
+    // Point the gallerImages property to the imageURLS
+    this.galleryImages = imageURLS;
+  }
 }
