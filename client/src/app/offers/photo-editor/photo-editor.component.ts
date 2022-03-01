@@ -20,7 +20,7 @@ export class PhotoEditorComponent implements OnInit {
   constructor(private offerService: OfferService) { }
 
   ngOnInit(): void {
-    this.loadPhotos();
+    this.loadPhotos(this.offer.id);
     this.initializeUploader();
   }
 
@@ -59,9 +59,16 @@ export class PhotoEditorComponent implements OnInit {
     })
   }
 
-  loadPhotos() {
+  /*loadPhotos() {
     this.offerService.getPhotos().subscribe(photos => {
     this.photos = photos
+    })
+  }*/
+
+  loadPhotos(appOfferId: number)
+  {
+    this.offerService.getPhotosByAppOfferId(appOfferId).subscribe( photos => {
+      this.photos = photos;
     })
   }
 }
