@@ -92,8 +92,8 @@ namespace API.Controllers
             return foundedPhotos;
         }
 
-        [HttpPost("upload-photo")]
-        public async Task<ActionResult<Photo>> AddPhoto(IFormFile file) //Upload photo
+        [HttpPost("upload-photo/{id}/")]
+        public async Task<ActionResult<Photo>> AddPhoto(int id, IFormFile file) //Upload photo
         {
             var result = await _photoService.AddPhotoAsync(file); //Upload photo to cloudinary
 
@@ -103,7 +103,7 @@ namespace API.Controllers
             {
                 Path = result.SecureUrl.AbsoluteUri,
                 PublicId = result.PublicId,
-                AppOfferId = 1,
+                AppOfferId = id,
                 IsMain = false
             };
 
