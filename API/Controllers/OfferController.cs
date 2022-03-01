@@ -126,6 +126,22 @@ namespace API.Controllers
             return NoContent();
         }
 
+        [HttpDelete("delete-photo/{photoId}")]
+        public async Task<ActionResult> DeletePhoto(int photoId)
+        {
+            var photo = _context.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo == null) return NotFound();
+
+            var result = await _photoService.DeletePhotoAsync(photo.PublicId); //Delete from cloudinary;
+            if (result.Error != null) return BadRequest(result.Error.Message);
+
+            _context.Photos.Remove(photo);
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+
+        }
+
         [HttpPut("update-offer")]
         public async Task<ActionResult> UpdateOffer(OfferDto offerdto) { //Update offer
             var offer = await _context.Offers.FindAsync(offerdto.Id);
