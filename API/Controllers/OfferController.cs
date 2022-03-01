@@ -112,13 +112,13 @@ namespace API.Controllers
             return photo;
         }
 
-        [HttpPut("set-main-photo/{id}")]
-        public async Task<ActionResult> SetMainPhoto(int id) //Set main photo for offer
+        [HttpPut("set-main-photo/{id}/{appOfferId}")]
+        public async Task<ActionResult> SetMainPhoto(int id, int appOfferId) //Set main photo for offer
         {
             var photo = _context.Photos.FirstOrDefault(x => x.Id == id); //Get photo which will be new main photo
             if (photo.IsMain) return BadRequest("This is already your main photo");
 
-            var currentMain = _context.Photos.FirstOrDefault(x => x.IsMain); //Get current main photo
+            var currentMain = _context.Photos.FirstOrDefault(x => x.IsMain && x.AppOfferId == appOfferId); //Get current main photo
             if (currentMain != null) currentMain.IsMain = false; //make current main photo a not main photo
             photo.IsMain = true; //make choosen photo a main photo
 

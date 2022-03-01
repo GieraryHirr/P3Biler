@@ -51,19 +51,13 @@ export class PhotoEditorComponent implements OnInit {
   }
 
   setMainPhoto(id) {
-    this.offerService.setMainPhoto(id).subscribe(() => {
+    this.offerService.setMainPhoto(id, this.offer.id).subscribe(() => {
       this.photos.forEach(p => {
         if (p.isMain) p.isMain = false;
         if (p.id === id) p.isMain = true;
       })
     })
   }
-
-  /*loadPhotos() {
-    this.offerService.getPhotos().subscribe(photos => {
-    this.photos = photos
-    })
-  }*/
 
   loadPhotos(appOfferId: number)
   {
