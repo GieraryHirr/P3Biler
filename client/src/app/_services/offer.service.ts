@@ -45,4 +45,8 @@ export class OfferService{
   setMainPhoto(id: number, appOfferId: number) {
     return this.http.put(this.baseUrl + "offer/set-main-photo/" + id + "/"  + appOfferId,  {}); //put request need some object at the end
   }
+
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + "offer/delete-photo/" + photoId);
+  }
 }
