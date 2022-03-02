@@ -166,5 +166,24 @@ namespace API.Controllers
                 await _context.SaveChangesAsync();
                 return NoContent();
         }
+
+        [HttpDelete("delete-offer/{offerId}")]
+        public async Task<ActionResult> DeleteOffer(int offerId)
+        {
+            var offer = _context.Offers.FirstOrDefault(x => x.Id == offerId);
+            //if (offer == null) return NotFound();
+            var photos = _context.Photos.Where(x => x.AppOfferId == offerId);
+
+            foreach (var photo in photos)
+            {
+                var result = await _photoService.DeletePhotoAsync(photo.PublicId); //Delete from cloudinary;
+                if (result.Error != null) return BadRequest(result.Error.Message);
+                _context.Photos.Remove(photo); //Delete from database
+            };
+
+            _context.Offers.Remove(offer); //Delete from database
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }           
 }

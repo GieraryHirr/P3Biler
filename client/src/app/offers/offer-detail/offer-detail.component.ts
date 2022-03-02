@@ -1,5 +1,5 @@
 import { Photo } from './../../_models/Photo';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OfferService } from 'src/app/_services/offer.service';
 import { Component, OnInit } from '@angular/core';
 import { Offer } from 'src/app/_models/offer';
@@ -27,7 +27,7 @@ export class OfferDetailComponent implements OnInit, Window {
   galleryImages: NgxGalleryImage[];
 
 
-  constructor(private offerService: OfferService, private route: ActivatedRoute, private accountService: AccountService) {
+  constructor(private offerService: OfferService, private route: ActivatedRoute, private accountService: AccountService, private router: Router) {
     this.accountService.currentUser$.pipe(take(1)).subscribe (user => this.user = user);
    }
 
@@ -91,5 +91,12 @@ export class OfferDetailComponent implements OnInit, Window {
 
     // Point the gallerImages property to the imageURLS
     this.galleryImages = imageURLS;
+  }
+
+  deleteOffer(offerId) {
+    this.offerService.deleteOFfer(offerId).subscribe(() => {
+
+    });
+    this.router.navigateByUrl("http://localhost:4200/*");
   }
 }

@@ -49,4 +49,8 @@ export class OfferService{
   deletePhoto(photoId: number) {
     return this.http.delete(this.baseUrl + "offer/delete-photo/" + photoId);
   }
+
+  deleteOFfer(offerId: number) {
+    return this.http.delete(this.baseUrl + "offer/delete-offer/" + offerId);
+  }
 }
