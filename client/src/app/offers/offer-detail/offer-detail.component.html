@@ -37,6 +37,7 @@
 
          <div *ngIf="user?.id == offer.appUserId" class="btn-group d-flex">
           <button class="btn btn-primary" routerLink="/offer/{{offer.id}}/edit">Edit</button>
+          <button class="btn btn-danger" (click)="deleteOffer(offer.id)">Delete</button>
         </div>
 
       </div>
