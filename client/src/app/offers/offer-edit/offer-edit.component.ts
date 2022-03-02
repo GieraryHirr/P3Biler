@@ -31,7 +31,7 @@ export class OfferEditComponent implements OnInit {
   loadOffer() {
     this.offerService.getOffer(+this.route.snapshot.paramMap.get('id')).subscribe(offer => {
       this.offer = offer;
-      this.loadPhotos(offer.appUserId);
+      this.loadPhotos(offer.id);
     })
   }
 
