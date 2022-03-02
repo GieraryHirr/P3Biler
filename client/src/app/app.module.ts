@@ -1,3 +1,5 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { SharedModule } from './_modules/shared.module';
 import { NgModule } from '@angular/core';
@@ -36,7 +38,7 @@ import { PhotoEditorComponent } from './offers/photo-editor/photo-editor.compone
     AddOfferComponent,
     OfferCardComponent,
     OfferEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,9 +47,12 @@ import { PhotoEditorComponent } from './offers/photo-editor/photo-editor.compone
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
+    NgxSpinnerModule
+
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
