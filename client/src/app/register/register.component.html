@@ -1,32 +1,74 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
   <h2 class="text-center text-primary">Sign up</h2>
   <hr>
   <div class="form-group">
-    <input type="text" class="form-control" name="login" [(ngModel)]="model.Login" placeholder="Login">
+    <input [class.is-invalid]="registerForm.get('login').errors && registerForm.get('login').touched"
+    type="text" class="form-control"
+    formControlName="login"
+    placeholder="Login">
+    <div class="invalid-feedback">Please enter a login</div>
   </div>
 
   <div class="form-group">
-    <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" placeholder="Password">
+    <input [class.is-invalid]="registerForm.get('password').errors && registerForm.get('password').touched"
+    type="password"
+    class="form-control"
+    formControlName="password"
+    placeholder="Password">
+    <div *ngIf="registerForm.get('password').hasError('required')" class="invalid-feedback">Please enter a password</div>
+    <div *ngIf="registerForm.get('password').hasError('minlength')" class="invalid-feedback">Password must be at least 8 characteres</div>
+    <div *ngIf="registerForm.get('password').hasError('maxlength')" class="invalid-feedback">Password must be at most 16 characteres</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="email" [(ngModel)]="model.Email" placeholder="Email">
+    <input [class.is-invalid]="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched"
+    type="password"
+    class="form-control"
+    formControlName="confirmPassword"
+    placeholder="Confirm Password">
+    <div *ngIf="registerForm.get('confirmPassword').hasError('required')" class="invalid-feedback">Please enter a password</div>
+    <div *ngIf="registerForm.get('confirmPassword').hasError('isMatching')" class="invalid-feedback">Confirm password must match password </div>
+
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="tlfnr" [(ngModel)]="model.Tlfnr" placeholder="Tlfnr">
+    <input [class.is-invalid]="registerForm.get('email').errors && registerForm.get('email').touched"
+    type="text" class="form-control"
+    formControlName="email"
+    placeholder="Email">
+    <div *ngIf="registerForm.get('email').hasError('required')" class="invalid-feedback">Please enter an email</div>
+    <div *ngIf="registerForm.get('email').hasError('email')" class="invalid-feedback">This is not an email</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="fornavn" [(ngModel)]="model.Fornavn" placeholder="Fornavn">
+    <input [class.is-invalid]="registerForm.get('tlfnr').errors && registerForm.get('tlfnr').touched"
+    type="text"
+    class="form-control"
+    formControlName="tlfnr"
+    placeholder="Tlfnr">
+    <div *ngIf="registerForm.get('tlfnr').hasError('required')" class="invalid-feedback">Please enter a number</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="efternavn" [(ngModel)]="model.Efternavn" placeholder="Efternavn">
+    <input [class.is-invalid]="registerForm.get('fornavn').errors && registerForm.get('fornavn').touched"
+    type="text"
+    class="form-control"
+    formControlName="fornavn"
+    placeholder="Fornavn">
+    <div *ngIf="registerForm.get('fornavn').hasError('required')" class="invalid-feedback">Please enter first name</div>
+  </div>
+
+  <div class="form-group">
+    <input [class.is-invalid]="registerForm.get('efternavn').errors && registerForm.get('efternavn').touched"
+    type="text"
+    class="form-control"
+    formControlName="efternavn"
+    placeholder="Efternavn">
+    <div *ngIf="registerForm.get('efternavn').hasError('required')" class="invalid-feedback">Please enter last name</div>
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success me-2" type="submit">Register</button>
+    <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Register</button>
     <button class="btn btn-success me-2" (click)="cancel()" type="button">Cancel</button>
   </div>
 </form>
