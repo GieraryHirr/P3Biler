@@ -12,8 +12,6 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   registerForm: FormGroup;
-  validationErrors: string[];
-
 
   constructor(private accountService: AccountService, private toastr: ToastrService, private router: Router) { }
 
