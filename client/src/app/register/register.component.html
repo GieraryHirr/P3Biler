@@ -3,10 +3,11 @@
   <hr>
   <div class="form-group">
     <input [class.is-invalid]="registerForm.get('login').errors && registerForm.get('login').touched"
-    type="text" class="form-control"
+    type="text"
+    class="form-control"
     formControlName="login"
     placeholder="Login">
-    <div class="invalid-feedback">Please enter a login</div>
+    <div *ngIf="registerForm.get('password').hasError('required')" class="invalid-feedback">Please enter a login</div>
   </div>
 
   <div class="form-group">
@@ -33,7 +34,8 @@
 
   <div class="form-group">
     <input [class.is-invalid]="registerForm.get('email').errors && registerForm.get('email').touched"
-    type="text" class="form-control"
+    type="text"
+    class="form-control"
     formControlName="email"
     placeholder="Email">
     <div *ngIf="registerForm.get('email').hasError('required')" class="invalid-feedback">Please enter an email</div>

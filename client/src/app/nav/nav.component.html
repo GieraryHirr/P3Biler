@@ -30,7 +30,8 @@
       <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off"> <!--Async makes that we automatically unsubscribe if our component is no longer visible-->
         <input name="login" [(ngModel)]="model.login" class="form-control me-2" type="text" placeholder="Login">
         <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password">
-        <button class="btn btn-success" type="submit">Login</button>
+        <button *ngIf="model.password" class="btn btn-success" type="submit">Login</button>
       </form>
     </div>
 </nav>
+<
