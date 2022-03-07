@@ -37,6 +37,7 @@ export class AddOfferComponent implements OnInit {
       city: new FormControl("",Validators.required),
       description: new FormControl("",[Validators.required, Validators.maxLength(500)]),
       appUserId: new FormControl(""),
+      tlfnr: new FormControl("", Validators.required),
     })
   }
 

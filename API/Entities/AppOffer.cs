@@ -24,6 +24,7 @@ namespace API.Entities
         public int Post { get; set; }
         public string City { get; set; }  
         public string Description { get; set; }
+        public string tlfnr { get; set; }
         public ICollection<Photo> Photo { get; set; }
         public AppUser AppUser { get; set; }
         public int AppUserId { get; set; }

@@ -20,10 +20,6 @@ namespace API.DTOs
         public string? Email { get; set; }
 
         [Required]
-        [Phone]
-        public string? Tlfnr { get; set; }
-
-        [Required]
         public string? Fornavn { get; set; }
 
         [Required]

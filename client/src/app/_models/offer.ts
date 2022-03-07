@@ -19,4 +19,5 @@ export class Offer {
   appUserId: number;
   created: string;
   mainPhotoPath: string;
+  tlfnr: string;
  }
