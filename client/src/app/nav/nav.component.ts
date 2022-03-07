@@ -1,7 +1,8 @@
 import { AccountService } from './../_services/account.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-nav',
@@ -9,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  @ViewChild("loginForm") loginForm: NgForm;
   model: any = {}
 
   constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
@@ -24,6 +26,7 @@ export class NavComponent implements OnInit {
       console.log(error);
       this.toastr.error(error.error); //show toastr warning
     })
+    this.loginForm.reset(); //Clear form
   }
 
   logout() { //Get event from logout button and pass it to service
