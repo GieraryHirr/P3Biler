@@ -38,7 +38,6 @@ namespace API.Controllers
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 passwordSalt = hmac.Key,
                 email = registerDto.Email,
-                tlfnr = registerDto.Tlfnr,
                 fornavn = registerDto.Fornavn,
                 efternavn = registerDto.Efternavn
             };

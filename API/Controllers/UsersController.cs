@@ -30,7 +30,6 @@ namespace API.Controllers
                 {
                     Id = item.Id,
                     email = item.email,
-                    tlfnr = item.tlfnr,
                     fornavn = item.fornavn,
                     efternavn = item.efternavn,
                     LastActive = item.LastActive

@@ -14,7 +14,6 @@ namespace API.Entities
         public byte[]? passwordHash { get; set; }
         public byte[]? passwordSalt { get; set; }
         public string? email { get; set; }
-        public string? tlfnr { get; set; }
         public string? fornavn { get; set; }
         public string? efternavn { get; set; }
         public DateTime LastActive { get; set; } = DateTime.Now;
