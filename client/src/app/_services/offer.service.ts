@@ -18,7 +18,7 @@ export class OfferService{
   baseUrl = "https://localhost:7076/api/";
   constructor(private http: HttpClient) { }
 
-  addOffer(model: Offer) { //Adding Offer
+  addOffer(model: any) { //Adding Offer
     return this.http.post(this.baseUrl + "offer/add-new-offer", model);
   }
 

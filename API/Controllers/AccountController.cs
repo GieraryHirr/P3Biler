@@ -26,7 +26,8 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto) //API to add user to database
         {
-            if(await UserExists(registerDto.Login, registerDto.Email)) return BadRequest("Username or email is taken"); //if user exist return bad request
+            if(await LoginExists(registerDto.Login)) return BadRequest("Login  is taken"); //if user exist return bad request
+            if(await EmailExists(registerDto.Email)) return BadRequest("Email is taken"); //if user exist return bad request
             
 
             using var hmac = new HMACSHA512(); //Password encryption
@@ -75,9 +76,14 @@ namespace API.Controllers
             };
         }
 
-        private async Task<bool> UserExists(string login, string email) //Check that user allready exist in database
+        private async Task<bool> LoginExists(string login) //Check that user allready exist in database
         {
-            return await _context.Users.AnyAsync(x => x.login == login.ToLower() || x.email == email.ToLower()); //AnyAsync() checking all rows and if find correct condition, returns true
+            return await _context.Users.AnyAsync(x => x.login == login.ToLower()); //AnyAsync() checking all rows and if find correct condition, returns true
+        }
+
+                private async Task<bool> EmailExists(string email) //Check that user allready exist in database
+        {
+            return await _context.Users.AnyAsync(x => x.email == email.ToLower()); //AnyAsync() checking all rows and if find correct condition, returns true
         }
     }
 }

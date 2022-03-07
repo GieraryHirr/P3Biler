@@ -1,64 +1,140 @@
-<form #addOfferForm="ngForm" (ngSubmit)="addOffer()" autocomplete="off">
+<form [formGroup]="addOfferForm" (ngSubmit)="addOfferForm.valid && addOffer()" autocomplete="off">
   <h2 class="text-center text-primary">Add Offer</h2>
   <hr>
   <div class="form-group">
-    <input type="text" class="form-control" name="category" [(ngModel)]="model.category" placeholder="Category">
+    <input [class.is-invalid]="addOfferForm.get('category').errors && addOfferForm.get('category').touched"
+    type="text"
+    class="form-control"
+    formControlName="category"
+    placeholder="Category">
+    <div *ngIf="addOfferForm.get('category').hasError('required')" class="invalid-feedback">Please enter a category</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="brand" [(ngModel)]="model.brand" placeholder="Brand">
+    <input [class.is-invalid]="addOfferForm.get('brand').errors && addOfferForm.get('brand').touched"
+    type="text"
+    class="form-control"
+    formControlName="brand"
+    placeholder="Brand">
+    <div *ngIf="addOfferForm.get('brand').hasError('required')" class="invalid-feedback">Please enter a brand</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="model" [(ngModel)]="model.model" placeholder="Model">
+    <input [class.is-invalid]="addOfferForm.get('model').errors && addOfferForm.get('model').touched"
+    type="text"
+    class="form-control"
+    formControlName="model"
+    placeholder="Model">
+    <div *ngIf="addOfferForm.get('model').hasError('required')" class="invalid-feedback">Please enter a model</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="modelyear" [(ngModel)]="model.modelYear" placeholder="Model Year">
+    <input [class.is-invalid]="addOfferForm.get('modelYear').errors && addOfferForm.get('modelYear').touched"
+    type="text"
+    class="form-control"
+    formControlName="modelYear"
+    placeholder="Model Year">
+    <div *ngIf="addOfferForm.get('modelYear').hasError('required')" class="invalid-feedback">Please enter a model year</div>
+    <div *ngIf="addOfferForm.get('modelYear').hasError('minlength')" class="invalid-feedback">Model year must be 4 charasters</div>
+    <div *ngIf="addOfferForm.get('modelYear').hasError('maxlength')" class="invalid-feedback">Model year must be 4 charasters</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="kilometers" [(ngModel)]="model.kilometers" placeholder="Kilometers">
+    <input [class.is-invalid]="addOfferForm.get('kilometers').errors && addOfferForm.get('kilometers').touched"
+    type="text"
+    class="form-control"
+    formControlName="kilometers"
+    placeholder="Kilometers">
+    <div *ngIf="addOfferForm.get('kilometers').hasError('required')" class="invalid-feedback">Please enter a kilometers</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="enginesize" [(ngModel)]="model.engineSize" placeholder="Engine Size">
+    <input [class.is-invalid]="addOfferForm.get('engineSize').errors && addOfferForm.get('engineSize').touched"
+    type="text"
+    class="form-control"
+    formControlName="engineSize"
+    placeholder="Engine Size">
+    <div *ngIf="addOfferForm.get('engineSize').hasError('required')" class="invalid-feedback">Please enter a engine size</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="horsepowers" [(ngModel)]="model.horsepowers" placeholder="Horsepowers">
+    <input [class.is-invalid]="addOfferForm.get('horsepowers').errors && addOfferForm.get('horsepowers').touched"
+    type="text"
+    class="form-control"
+    formControlName="horsepowers"
+    placeholder="Horsepowers">
+    <div *ngIf="addOfferForm.get('horsepowers').hasError('required')" class="invalid-feedback">Please enter a horsepowers</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="fuel" [(ngModel)]="model.fuel" placeholder="Fuel">
+    <input [class.is-invalid]="addOfferForm.get('fuel').errors && addOfferForm.get('fuel').touched"
+    type="text"
+    class="form-control"
+    formControlName="fuel"
+    placeholder="Fuel">
+    <div *ngIf="addOfferForm.get('fuel').hasError('required')" class="invalid-feedback">Please enter a fuel</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="gearbox" [(ngModel)]="model.gearbox" placeholder="Gearbox">
+    <input [class.is-invalid]="addOfferForm.get('gearbox').errors && addOfferForm.get('gearbox').touched"
+    type="text"
+    class="form-control"
+    formControlName="gearbox"
+    placeholder="Gearbox">
+    <div *ngIf="addOfferForm.get('gearbox').hasError('required')" class="invalid-feedback">Please enter a gearbox</div>
+    <div *ngIf="addOfferForm.get('gearbox').hasError('minlength')" class="invalid-feedback">Gearbox must be "AT" or "MT"</div>
+    <div *ngIf="addOfferForm.get('gearbox').hasError('maxlength')" class="invalid-feedback">Gearbox must be "AT" or "MT"</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="color" [(ngModel)]="model.color" placeholder="Color">
+    <input [class.is-invalid]="addOfferForm.get('color').errors && addOfferForm.get('color').touched"
+    type="text"
+    class="form-control"
+    formControlName="color"
+    placeholder="Color">
+    <div *ngIf="addOfferForm.get('color').hasError('required')" class="invalid-feedback">Please enter a color</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="price" [(ngModel)]="model.price" placeholder="Price">
+    <input [class.is-invalid]="addOfferForm.get('price').errors && addOfferForm.get('price').touched"
+    type="text"
+    class="form-control"
+    formControlName="price"
+    placeholder="Price">
+    <div *ngIf="addOfferForm.get('price').hasError('required')" class="invalid-feedback">Please enter a price</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="post" [(ngModel)]="model.post" placeholder="Post">
+    <input [class.is-invalid]="addOfferForm.get('post').errors && addOfferForm.get('post').touched"
+    type="text"
+    class="form-control"
+    formControlName="post"
+    placeholder="Post">
+    <div *ngIf="addOfferForm.get('post').hasError('required')" class="invalid-feedback">Please enter a post</div>
+    <div *ngIf="addOfferForm.get('post').hasError('minlength')" class="invalid-feedback">Post must be 4 charasters</div>
+    <div *ngIf="addOfferForm.get('post').hasError('maxlength')" class="invalid-feedback">Post must be 4 charasters</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="city" [(ngModel)]="model.city" placeholder="City">
+    <input [class.is-invalid]="addOfferForm.get('city').errors && addOfferForm.get('city').touched"
+    type="text"
+    class="form-control"
+    formControlName="city"
+    placeholder="City">
+    <div *ngIf="addOfferForm.get('city').hasError('required')" class="invalid-feedback">Please enter a city</div>
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="description" [(ngModel)]="model.description" placeholder="Description">
+    <input [class.is-invalid]="addOfferForm.get('description').errors && addOfferForm.get('description').touched"
+    type="text"
+    class="form-control"
+    formControlName="description"
+    placeholder="Description">
+    <div *ngIf="addOfferForm.get('description').hasError('required')" class="invalid-feedback">Please enter a description</div>
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success me-2" type="submit">Add</button>
+    <button [disabled]="!addOfferForm.valid" class="btn btn-success me-2" type="submit">Add</button>
     <button class="btn btn-success me-2" type="button" routerLink="/offers"routerLinkActive="active">Cancel</button>
   </div>
 </form>

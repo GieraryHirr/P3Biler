@@ -12,7 +12,7 @@ namespace API.DTOs
         public string? Login { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 8)] //Maximum length 50, minimum 8.
+        [StringLength(18, MinimumLength = 8)] //Maximum length 18, minimum 8.
         public string? Password { get; set; }
 
         [Required]
