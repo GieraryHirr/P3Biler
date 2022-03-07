@@ -1,6 +1,6 @@
-<div class="container mt-5">
-    <div *ngIf="(registerMode) === false" style="text-align: center;">
-        <h1>Buy our car</h1>
+<div *ngIf="(accountService.currentUser$ | async) === null" class="container mt-5">
+    <div *ngIf="(registerMode === false)" style="text-align: center;">
+        <h1>Sell your car</h1>
         <p class="lead">Hello im under the water</p>
         <div class="test-center">
           <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2">Register</button>
@@ -15,4 +15,8 @@
         </div>
       </div>
     </div>
+</div>
+<div class="container mt-5">
+  <hr>
+  <app-offer-list></app-offer-list>
 </div>
