@@ -137,7 +137,8 @@
         type="text"
         class="form-control"
         formControlName="engineSize"
-        placeholder="Engine Size">
+        placeholder="Engine Size"
+        maxlength="5">
         <div *ngIf="addOfferForm.get('engineSize').hasError('required')" class="invalid-feedback">Please enter a engine size</div>
         <div *ngIf="addOfferForm.get('engineSize').hasError('pattern')" class="invalid-feedback">Please enter a numbers</div>
       </div>
