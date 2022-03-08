@@ -24,20 +24,20 @@ export class AddOfferComponent implements OnInit {
     this.addOfferForm = new FormGroup({
       category: new FormControl("",Validators.required),
       brand: new FormControl("",Validators.required),
-      model: new FormControl("",Validators.required),
+      model: new FormControl("",[Validators.required, Validators.maxLength(30)]),
       modelYear: new FormControl("",[Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
-      kilometers: new FormControl("",Validators.required),
-      engineSize: new FormControl("",Validators.required),
-      horsepowers: new FormControl("",Validators.required),
+      kilometers: new FormControl("",[Validators.required, Validators.pattern("^[0-9]*$")]),
+      engineSize: new FormControl("",[Validators.required, Validators.pattern("^[0-9]*$")]),
+      horsepowers: new FormControl("",[Validators.required, Validators.pattern("^[0-9]*$")]),
       fuel: new FormControl("",Validators.required),
-      gearbox: new FormControl("",[Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
+      gearbox: new FormControl("",[Validators.required]),
       color: new FormControl("",Validators.required),
-      price: new FormControl("",Validators.required),
-      post: new FormControl("",[Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
+      price: new FormControl("",[Validators.required, Validators.pattern("^[0-9]*$")]),
+      post: new FormControl("",[Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern("^[0-9]*$")]),
       city: new FormControl("",Validators.required),
       description: new FormControl("",[Validators.required, Validators.maxLength(500)]),
       appUserId: new FormControl(""),
-      tlfnr: new FormControl("", Validators.required),
+      tlfnr: new FormControl("", [Validators.required,Validators.minLength(8), Validators.pattern("^[0-9]*$")]),
     })
   }
 
