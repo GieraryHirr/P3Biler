@@ -1,0 +1,21 @@
+.form-group {
+  margin-bottom: 10px;
+}
+
+.addOfferContainer {
+  width: 800px;
+  margin: auto;
+}
+
+.leftDiv {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.rightDiv {
+  float: right;
+  width: 50%;
+  padding: 10px;
+}
+
