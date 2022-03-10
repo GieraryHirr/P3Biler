@@ -211,6 +211,7 @@
         maxlength="4">
         <div *ngIf="addOfferForm.get('post').hasError('required')" class="invalid-feedback">Please enter a post</div>
         <div *ngIf="addOfferForm.get('post').hasError('pattern')" class="invalid-feedback">Please enter a numbers</div>
+        <div *ngIf="addOfferForm.get('post').hasError('minlength')" class="invalid-feedback">Post must be 4 numbers</div>
       </div>
 
       <div class="form-group">

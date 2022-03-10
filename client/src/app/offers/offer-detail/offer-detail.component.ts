@@ -95,8 +95,8 @@ export class OfferDetailComponent implements OnInit, Window {
 
   deleteOffer(offerId) {
     this.offerService.deleteOFfer(offerId).subscribe(() => {
-
+      this.router.navigateByUrl("http://localhost:4200/*");
     });
-    this.router.navigateByUrl("http://localhost:4200/*");
+
   }
 }
