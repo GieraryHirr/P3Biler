@@ -414,7 +414,7 @@
             </div>
           </div>
           <div class="form-group text-center">
-            <button [disabled]="!editOfferForm.valid" class="btn btn-success me-2" type="submit">Add</button>
+            <button [disabled]="!editOfferForm.valid" class="btn btn-success me-2" type="submit" routerLink="/offer/{{offer.id}}">Save</button>
             <button class="btn btn-danger me-2" type="button" routerLink="/offer/{{offer.id}}" routerLinkActive="active">Cancel</button>
           </div>
         </form>
