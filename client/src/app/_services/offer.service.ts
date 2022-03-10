@@ -30,6 +30,10 @@ export class OfferService{
     return this.http.get<Offer>(this.baseUrl + "offer/" + id);
   }
 
+  getMyOffers(id: number) {
+    return this.http.get<Offer[]>(this.baseUrl + "offer/my-offers/" + id);
+  }
+
   updateOffer(offer: Offer) {
     return this.http.put(this.baseUrl + "offer/update-offer", offer);
   }
