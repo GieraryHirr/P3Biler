@@ -186,5 +186,22 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpGet("my-offers/{id}")]
+        public async Task<ActionResult<IEnumerable<AppOffer>>> GetMyOffer(int id)
+        {
+            var offers = await _context.Offers.ToListAsync(); //Get all offers
+            List<AppOffer> myOffers = new List<AppOffer>();
+            foreach (AppOffer offer in offers)
+            {
+                if (offer.AppUserId == id) //Find offers with specified offer id
+                {
+                    myOffers.Add(offer);
+                }
+            }
+            return myOffers;
+        }
+
+        
     }           
 }
