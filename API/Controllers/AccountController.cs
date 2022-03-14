@@ -86,14 +86,14 @@ namespace API.Controllers
         }
 
         [HttpPut("update-account")]
-        public async Task<ActionResult> UpdateAccount(RegisterDto registerDto)
-        { //Update offer
+        public async Task<ActionResult> UpdateAccount(AccountUpdateDto registerDto)
+        { //Update account
 
             if (await LoginExists(registerDto.Login)) return BadRequest("Login  is taken"); //if user exist return bad request
             if (await EmailExists(registerDto.Email)) return BadRequest("Email is taken"); //if user exist return bad request
 
             using var hmac = new HMACSHA512(); //Password encryption
-            var account = await _context.Users.FindAsync(registerDto.Login);
+            var account = await _context.Users.FindAsync(registerDto.Id);
 
             account.login = registerDto.Login;
             account.email = registerDto.Email;
@@ -105,6 +105,23 @@ namespace API.Controllers
             _context.Users.Update(account);
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        //api/account/3
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AccountUpdateDto>> GetAccount(int id) //API to get selected user
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            var account = new AccountUpdateDto {
+                Id = user.Id,
+                Login = user.login,
+                Password = "",
+                Email = user.email,
+                Fornavn = user.fornavn,
+                Efternavn = user.efternavn
+            };
+            return Ok(account); //Find() checking all primary keys in table.
         }
     }
 }

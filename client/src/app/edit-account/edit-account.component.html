@@ -1,1 +1,69 @@
-<p>edit-account works!</p>
+<div style="text-align: center;">
+  <form [formGroup]="editForm" (ngSubmit)="editForm.valid && save()" autocomplete="off">
+    <h2 class="text-center text-primary">Edit</h2>
+    <hr>
+    <div class="form-group">
+      <input [class.is-invalid]="editForm.get('login')?.errors && editForm.get('login').touched"
+      type="text"
+      class="form-control"
+      formControlName="login"
+      placeholder="Login">
+      <div *ngIf="editForm.get('login').hasError('required')" class="invalid-feedback">Please enter a login</div>
+    </div>
+
+    <div class="form-group">
+      <input [class.is-invalid]="editForm.get('password').errors && editForm.get('password').touched"
+      type="password"
+      class="form-control"
+      formControlName="password"
+      placeholder="Password">
+      <div *ngIf="editForm.get('password').hasError('required')" class="invalid-feedback">Please enter a password</div>
+      <div *ngIf="editForm.get('password').hasError('minlength')" class="invalid-feedback">Password must be at least 8 characteres</div>
+      <div *ngIf="editForm.get('password').hasError('maxlength')" class="invalid-feedback">Password must be at most 16 characteres</div>
+    </div>
+
+    <div class="form-group">
+      <input [class.is-invalid]="editForm.get('confirmPassword').errors && editForm.get('confirmPassword').touched"
+      type="password"
+      class="form-control"
+      formControlName="confirmPassword"
+      placeholder="Confirm Password">
+      <div *ngIf="editForm.get('confirmPassword').hasError('required')" class="invalid-feedback">Please enter a password</div>
+      <div *ngIf="editForm.get('confirmPassword').hasError('isMatching')" class="invalid-feedback">Confirm password must match password </div>
+
+    </div>
+
+    <div class="form-group">
+      <input [class.is-invalid]="editForm.get('email').errors && editForm.get('email').touched"
+      type="text"
+      class="form-control"
+      formControlName="email"
+      placeholder="Email">
+      <div *ngIf="editForm.get('email').hasError('required')" class="invalid-feedback">Please enter an email</div>
+      <div *ngIf="editForm.get('email').hasError('email')" class="invalid-feedback">This is not an email</div>
+    </div>
+
+    <div class="form-group">
+      <input [class.is-invalid]="editForm.get('fornavn').errors && editForm.get('fornavn').touched"
+      type="text"
+      class="form-control"
+      formControlName="fornavn"
+      placeholder="Fornavn">
+      <div *ngIf="editForm.get('fornavn').hasError('required')" class="invalid-feedback">Please enter first name</div>
+    </div>
+
+    <div class="form-group">
+      <input [class.is-invalid]="editForm.get('efternavn').errors && editForm.get('efternavn').touched"
+      type="text"
+      class="form-control"
+      formControlName="efternavn"
+      placeholder="Efternavn">
+      <div *ngIf="editForm.get('efternavn').hasError('required')" class="invalid-feedback">Please enter last name</div>
+    </div>
+
+    <div class="form-group text-center">
+      <button [disabled]="!editForm.valid" class="btn btn-success me-2" type="submit">Save</button>
+      <button class="btn btn-danger me-2" (click)="cancel()" type="button">Cancel</button>
+    </div>
+  </form>
+</div>
