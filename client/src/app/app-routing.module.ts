@@ -1,3 +1,4 @@
+import { EditAccountComponent } from './edit-account/edit-account.component';
 import { OfferEditComponent } from './offers/offer-edit/offer-edit.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AddOfferComponent } from './add-offer/add-offer.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     runGuardsAndResolvers:"always",
     canActivate:[AuthGuard], //user must be logged to use this route
     children: [
+      {path: "update-account", component: EditAccountComponent},
       {path: "messages", component: MessagesComponent},
       {path: "myoffers", component: MyOfferListComponent},
       {path: "offer/:id/edit", component: OfferEditComponent},

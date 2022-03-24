@@ -26,9 +26,9 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto) //API to add user to database
         {
-            if(await LoginExists(registerDto.Login)) return BadRequest("Login  is taken"); //if user exist return bad request
-            if(await EmailExists(registerDto.Email)) return BadRequest("Email is taken"); //if user exist return bad request
-            
+            if (await LoginExists(registerDto.Login)) return BadRequest("Login  is taken"); //if user exist return bad request
+            if (await EmailExists(registerDto.Email)) return BadRequest("Email is taken"); //if user exist return bad request
+
 
             using var hmac = new HMACSHA512(); //Password encryption
 
@@ -64,10 +64,10 @@ namespace API.Controllers
 
             for (int i = 0; i < computedHash.Length; i++) //Check that password is correct
             {
-                if(computedHash[i] != user.passwordHash[i]) return Unauthorized("Invalid password"); //comparing password from input and database
+                if (computedHash[i] != user.passwordHash[i]) return Unauthorized("Invalid password"); //comparing password from input and database
             }
 
-            return new UserDto 
+            return new UserDto
             {
                 Login = user.login,
                 Id = user.Id,
@@ -80,9 +80,44 @@ namespace API.Controllers
             return await _context.Users.AnyAsync(x => x.login == login.ToLower()); //AnyAsync() checking all rows and if find correct condition, returns true
         }
 
-                private async Task<bool> EmailExists(string email) //Check that user allready exist in database
+        private async Task<bool> EmailExists(string email) //Check that user allready exist in database
         {
             return await _context.Users.AnyAsync(x => x.email == email.ToLower()); //AnyAsync() checking all rows and if find correct condition, returns true
+        }
+
+        [HttpPut("update-account")]
+        public async Task<ActionResult> UpdateAccount(AccountUpdateDto registerDto)
+        { //Update account
+
+
+            var account = await _context.Users.FindAsync(registerDto.Id);
+
+            if (await LoginExists(registerDto.Login) && registerDto.Login != account.login) return BadRequest("Login  is taken"); //if user exist return bad request
+            if (await EmailExists(registerDto.Email) && registerDto.Email != account.email) return BadRequest("Email is taken"); //if user exist return bad request
+
+            account.login = registerDto.Login;
+            account.email = registerDto.Email;
+            account.fornavn = registerDto.Fornavn;
+            account.efternavn = registerDto.Efternavn;
+            _context.Users.Update(account);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        //api/account/3
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AccountUpdateDto>> GetAccount(int id) //API to get selected user
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            var account = new AccountUpdateDto {
+                Id = user.Id,
+                Login = user.login,
+                Email = user.email,
+                Fornavn = user.fornavn,
+                Efternavn = user.efternavn
+            };
+            return Ok(account);
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace API.Entities
@@ -17,6 +18,7 @@ namespace API.Entities
         public string? fornavn { get; set; }
         public string? efternavn { get; set; }
         public DateTime LastActive { get; set; } = DateTime.Now;
+        [JsonIgnore]
         public ICollection<AppOffer> Offer { get; set; }
     }
 }

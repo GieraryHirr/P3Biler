@@ -1,3 +1,4 @@
+import { account } from './../_models/account';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
@@ -45,5 +46,13 @@ export class AccountService {
         }
       })
     )
+  }
+
+  getAccount(id: number) {
+    return this.http.get<account>(this.baseUrl + "account/" + id);
+  }
+
+  updateAccount(account: account) {
+    return this.http.put(this.baseUrl + "account/update-account", account)
   }
 }

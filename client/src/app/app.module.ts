@@ -21,6 +21,7 @@ import { AddOfferComponent } from './add-offer/add-offer.component';
 import { OfferCardComponent } from './offers/offer-card/offer-card.component';
 import { OfferEditComponent } from './offers/offer-edit/offer-edit.component';
 import { PhotoEditorComponent } from './offers/photo-editor/photo-editor.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { PhotoEditorComponent } from './offers/photo-editor/photo-editor.compone
     OfferCardComponent,
     OfferEditComponent,
     PhotoEditorComponent,
+    EditAccountComponent,
   ],
   imports: [
     BrowserModule,
