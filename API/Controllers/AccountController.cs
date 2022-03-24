@@ -89,19 +89,16 @@ namespace API.Controllers
         public async Task<ActionResult> UpdateAccount(AccountUpdateDto registerDto)
         { //Update account
 
-            if (await LoginExists(registerDto.Login)) return BadRequest("Login  is taken"); //if user exist return bad request
-            if (await EmailExists(registerDto.Email)) return BadRequest("Email is taken"); //if user exist return bad request
 
-            using var hmac = new HMACSHA512(); //Password encryption
             var account = await _context.Users.FindAsync(registerDto.Id);
+
+            if (await LoginExists(registerDto.Login) && registerDto.Login != account.login) return BadRequest("Login  is taken"); //if user exist return bad request
+            if (await EmailExists(registerDto.Email) && registerDto.Email != account.email) return BadRequest("Email is taken"); //if user exist return bad request
 
             account.login = registerDto.Login;
             account.email = registerDto.Email;
-            account.passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-            account.passwordSalt = hmac.Key;
             account.fornavn = registerDto.Fornavn;
             account.efternavn = registerDto.Efternavn;
-
             _context.Users.Update(account);
             await _context.SaveChangesAsync();
             return NoContent();
@@ -116,12 +113,11 @@ namespace API.Controllers
             var account = new AccountUpdateDto {
                 Id = user.Id,
                 Login = user.login,
-                Password = "",
                 Email = user.email,
                 Fornavn = user.fornavn,
                 Efternavn = user.efternavn
             };
-            return Ok(account); //Find() checking all primary keys in table.
+            return Ok(account);
         }
     }
 }

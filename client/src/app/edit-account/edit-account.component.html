@@ -12,28 +12,6 @@
     </div>
 
     <div class="form-group">
-      <input [class.is-invalid]="editForm.get('password').errors && editForm.get('password').touched"
-      type="password"
-      class="form-control"
-      formControlName="password"
-      placeholder="Password">
-      <div *ngIf="editForm.get('password').hasError('required')" class="invalid-feedback">Please enter a password</div>
-      <div *ngIf="editForm.get('password').hasError('minlength')" class="invalid-feedback">Password must be at least 8 characteres</div>
-      <div *ngIf="editForm.get('password').hasError('maxlength')" class="invalid-feedback">Password must be at most 16 characteres</div>
-    </div>
-
-    <div class="form-group">
-      <input [class.is-invalid]="editForm.get('confirmPassword').errors && editForm.get('confirmPassword').touched"
-      type="password"
-      class="form-control"
-      formControlName="confirmPassword"
-      placeholder="Confirm Password">
-      <div *ngIf="editForm.get('confirmPassword').hasError('required')" class="invalid-feedback">Please enter a password</div>
-      <div *ngIf="editForm.get('confirmPassword').hasError('isMatching')" class="invalid-feedback">Confirm password must match password </div>
-
-    </div>
-
-    <div class="form-group">
       <input [class.is-invalid]="editForm.get('email').errors && editForm.get('email').touched"
       type="text"
       class="form-control"
